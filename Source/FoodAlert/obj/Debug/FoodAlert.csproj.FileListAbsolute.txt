@@ -1,0 +1,4 @@
+E:\Steam\steamapps\common\RimWorld\Mods\FoodAlert\1.1\Assemblies\FoodAlert.dll
+E:\Steam\steamapps\common\RimWorld\Mods\FoodAlert\Source\FoodAlert\obj\Debug\FoodAlert.csprojAssemblyReference.cache
+E:\Steam\steamapps\common\RimWorld\Mods\FoodAlert\Source\FoodAlert\obj\Debug\FoodAlert.csproj.CoreCompileInputs.cache
+E:\Steam\steamapps\common\RimWorld\Mods\FoodAlert\Source\FoodAlert\obj\Debug\FoodAlert.dll

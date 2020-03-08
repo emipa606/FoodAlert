@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+ <SomeFood>Food reserves</SomeFood>
+ <SomeFoodDesc>Food is not of an immediate concern.\n\n    Full bars worth of food in storage: {0}\n    Colonists/prisoners getting food: {1}\n    Days worth of food in storage: {2}</SomeFoodDesc>
+ <FoodAlert_DaysOfFood> days worth of food</FoodAlert_DaysOfFood>
+ <FoodAlert_Decent>\n\nThat is a decent amount of food.</FoodAlert_Decent>
+ <FoodAlert_Bunch>\n\nThat is a bunch of food.</FoodAlert_Bunch>
+ <FoodAlert_Solid>\n\nThat is a solid amount of food.</FoodAlert_Solid>
+ <FoodAlert_Ridiculous>\n\nThat is an utterly ridiculous amount of food.</FoodAlert_Ridiculous>
+ 
+</LanguageData>

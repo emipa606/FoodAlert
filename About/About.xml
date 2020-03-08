@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>Food Alert (Continued)</name>
+  <packageId>Mlie.FoodAlert</packageId>
+  <author>Mlie</author>
+  <url>https://github.com/emipa606/FoodAlert</url>
+  <supportedVersions>
+    <li>1.0</li>
+    <li>1.1</li>
+  </supportedVersions>
+	<modDependencies>
+		<li>
+			<packageId>brrainz.harmony</packageId>
+            <displayName>Harmony</displayName>
+            <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+            <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+		</li>
+	</modDependencies>
+	<loadAfter>
+		<li>brrainz.harmony</li>
+	</loadAfter>
+  <description>
+    Update of Mehnis mod for RimWorld 1.1
+    https://steamcommunity.com/sharedfiles/filedetails/?id=1114619043
+
+    Support-chat:
+    https://discord.gg/SuhwVpM
+
+    Non-steam version:
+    https://github.com/emipa606/FoodAlert
+
+    --- Original Description ---
+Shows a persistent readout with the amount of food you currently have in storage, and an estimate of how long stocks will last. Prevent sudden starvation by knowing how your food supplies are doing.
+
+v0.1.1.1 Russian language added, thanks to Alex.
+v0.1.1.0 RimWorld 1.0 compatible
+v0.1.0.1 Now has a way nicer readout with all the sexy things I wanted to add.
+
+Thanks to Brrainz - for Harmony and a lot of the code for that readout :)
+
+Languages:
+Russian: Alex_1203</description>
+</ModMetaData>
