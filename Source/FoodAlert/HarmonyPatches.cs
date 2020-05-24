@@ -1,5 +1,7 @@
 ﻿using HarmonyLib;
 using RimWorld;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
@@ -16,6 +18,23 @@ namespace FoodAlert
                 new HarmonyMethod(typeof(HarmonyPatches), nameof(FoodCounter_NearDatePostfix)), null);
         }
 
+        private static float GetEdibleStuff(Map map)
+        {
+            float num = 0f;
+            var selectedPreferability = LoadedModManager.GetMod<FoodAlertMod>().GetSettings<FoodAlertSettings>().foodPreferability;
+            FoodPreferability selectedPreferabilityEnum = (FoodPreferability)Enum.Parse(typeof(FoodPreferability), selectedPreferability);
+            foreach (KeyValuePair<ThingDef, int> keyValuePair in map.resourceCounter.AllCountedAmounts)
+            {
+                if (keyValuePair.Key.IsNutritionGivingIngestible && keyValuePair.Key.ingestible.HumanEdible)
+                {
+                    if (selectedPreferabilityEnum > keyValuePair.Key.ingestible.preferability)
+                        continue;
+                    num += keyValuePair.Key.GetStatValueAbstract(StatDefOf.Nutrition, null) * (float)keyValuePair.Value;
+                }
+            }
+            return num;
+        }
+
         private static void FoodCounter_NearDatePostfix(ref float curBaseY)
         {
             Map map = Find.CurrentMap;
@@ -26,7 +45,7 @@ namespace FoodAlert
             if (Find.TickManager.TicksGame < 15000)
                 return;
 
-            float totalHumanEdibleNutrition = map.resourceCounter.TotalHumanEdibleNutrition;
+            float totalHumanEdibleNutrition = GetEdibleStuff(map);
 
             if (totalHumanEdibleNutrition < 4f * map.mapPawns.FreeColonistsSpawnedCount)
                 return;
@@ -35,34 +54,33 @@ namespace FoodAlert
 
             int totalDaysOfFood = Mathf.FloorToInt(totalHumanEdibleNutrition / humansGettingFood);
             string daysWorthOfHumanFood = $"{totalDaysOfFood}" + "FoodAlert_DaysOfFood".Translate();
-            string addendumForFlavour;
+            string addendumForFlavour = "\n    " + "SettingDescription".Translate() + ": " + LoadedModManager.GetMod<FoodAlertMod>().GetSettings<FoodAlertSettings>().foodPreferability;
 
             switch (totalDaysOfFood)
             {
                 case int n when n >= 100:
-                    addendumForFlavour = "FoodAlert_Ridiculous".Translate();
+                    addendumForFlavour += "FoodAlert_Ridiculous".Translate();
                     break;
 
                 case int n when n >= 60:
-                    addendumForFlavour = "FoodAlert_Solid".Translate();
+                    addendumForFlavour += "FoodAlert_Solid".Translate();
                     break;
 
                 case int n when n >= 30:
-                    addendumForFlavour = "FoodAlert_Bunch".Translate();
+                    addendumForFlavour += "FoodAlert_Bunch".Translate();
                     break;
 
                 case int n when n >= 10:
-                    addendumForFlavour = "FoodAlert_Decent".Translate();
+                    addendumForFlavour += "FoodAlert_Decent".Translate();
                     break;
 
                 default:
-                    addendumForFlavour = "FoodAlert_Decent".Translate();
+                    addendumForFlavour += "FoodAlert_Decent".Translate();
                     break;
             }
 
             if (humansGettingFood == 0)
                 addendumForFlavour = "\n\nShit you made me divide by zero. Disregard that.";
-
             float rightMargin = 7f;
             Rect zlRect = new Rect(UI.screenWidth - Alert.Width, curBaseY - 24f, Alert.Width, 24f);
             Text.Font = GameFont.Small;

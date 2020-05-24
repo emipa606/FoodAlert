@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
- <SomeFood>Запас еды</SomeFood>
- <SomeFoodDesc>Запас еды не вызывает беспокойства.\n\n    Запас на складе: {0}\n    Колонисты и заключённые получают: {1}\n    На складах осталось еды на: {2}</SomeFoodDesc>
- <FoodAlert_DaysOfFood> дней с едой</FoodAlert_DaysOfFood>
- <FoodAlert_Decent>\n\nЭто приличное количество еды.</FoodAlert_Decent>
- <FoodAlert_Bunch>\n\nЭто целая куча еды.</FoodAlert_Bunch>
- <FoodAlert_Solid>\n\nЭто солидное количество еды.</FoodAlert_Solid>
- <FoodAlert_Ridiculous>\n\nЭто совершенно нелепое количество пищи.</FoodAlert_Ridiculous>
- 
+  <SomeFood>Ð—Ð°Ð¿Ð°Ñ ÐµÐ´Ñ‹</SomeFood>
+  <SomeFoodDesc>Ð—Ð°Ð¿Ð°Ñ ÐµÐ´Ñ‹ Ð½Ðµ Ð²Ñ‹Ð·Ñ‹Ð²Ð°ÐµÑ‚ Ð±ÐµÑÐ¿Ð¾ÐºÐ¾Ð¹ÑÑ‚Ð²Ð°.\n\n    Ð—Ð°Ð¿Ð°Ñ Ð½Ð° ÑÐºÐ»Ð°Ð´Ðµ: {0}\n    ÐšÐ¾Ð»Ð¾Ð½Ð¸ÑÑ‚Ñ‹ Ð¸ Ð·Ð°ÐºÐ»ÑŽÑ‡Ñ‘Ð½Ð½Ñ‹Ðµ Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÑŽÑ‚: {1}\n    ÐÐ° ÑÐºÐ»Ð°Ð´Ð°Ñ… Ð¾ÑÑ‚Ð°Ð»Ð¾ÑÑŒ ÐµÐ´Ñ‹ Ð½Ð°: {2}</SomeFoodDesc>
+  <FoodAlert_DaysOfFood> Ð´Ð½ÐµÐ¹ Ñ ÐµÐ´Ð¾Ð¹</FoodAlert_DaysOfFood>
+  <FoodAlert_Decent>\n\nÐ­Ñ‚Ð¾ Ð¿Ñ€Ð¸Ð»Ð¸Ñ‡Ð½Ð¾Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÐµÐ´Ñ‹.</FoodAlert_Decent>
+  <FoodAlert_Bunch>\n\nÐ­Ñ‚Ð¾ Ñ†ÐµÐ»Ð°Ñ ÐºÑƒÑ‡Ð° ÐµÐ´Ñ‹.</FoodAlert_Bunch>
+  <FoodAlert_Solid>\n\nÐ­Ñ‚Ð¾ ÑÐ¾Ð»Ð¸Ð´Ð½Ð¾Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÐµÐ´Ñ‹.</FoodAlert_Solid>
+  <FoodAlert_Ridiculous>\n\nÐ­Ñ‚Ð¾ ÑÐ¾Ð²ÐµÑ€ÑˆÐµÐ½Ð½Ð¾ Ð½ÐµÐ»ÐµÐ¿Ð¾Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð¿Ð¸Ñ‰Ð¸.</FoodAlert_Ridiculous>
 </LanguageData>
