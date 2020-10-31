@@ -50,11 +50,23 @@ namespace FoodAlert
             if (totalHumanEdibleNutrition < 4f * map.mapPawns.FreeColonistsSpawnedCount)
                 return;
 
-            int humansGettingFood = map.mapPawns.FreeColonistsSpawnedCount + map.mapPawns.PrisonersOfColonySpawnedCount;
-
-            int totalDaysOfFood = Mathf.FloorToInt(totalHumanEdibleNutrition / humansGettingFood);
-            string daysWorthOfHumanFood = $"{totalDaysOfFood}" + "FoodAlert_DaysOfFood".Translate();
+            int humansGettingFood = map.mapPawns.FreeColonistsAndPrisonersSpawnedCount;
+            float totalFoodNeedPerDay = 0f;
+            var pawns = map.mapPawns.FreeColonistsAndPrisoners;
+            foreach (Pawn pawn in pawns)
+            {
+                var pawnNeed = pawn.needs.food.FoodFallPerTickAssumingCategory(HungerCategory.Fed, false) * 60000f;
+                //Log.Message($"{pawn.NameShortColored} needs {pawnNeed} food per day.");
+                totalFoodNeedPerDay += pawnNeed;
+            }
             string addendumForFlavour = "\n    " + "SettingDescription".Translate() + ": " + LoadedModManager.GetMod<FoodAlertMod>().GetSettings<FoodAlertSettings>().foodPreferability;
+            if(totalFoodNeedPerDay == 0f)
+            {
+                addendumForFlavour = "\n\nTotal food-need is 0, that shouldnt happen.";
+                totalFoodNeedPerDay = 0.0001f;
+            }
+            int totalDaysOfFood = Mathf.FloorToInt(totalHumanEdibleNutrition / totalFoodNeedPerDay);
+            string daysWorthOfHumanFood = $"{totalDaysOfFood}" + "FoodAlert_DaysOfFood".Translate();
 
             switch (totalDaysOfFood)
             {
@@ -79,8 +91,6 @@ namespace FoodAlert
                     break;
             }
 
-            if (humansGettingFood == 0)
-                addendumForFlavour = "\n\nShit you made me divide by zero. Disregard that.";
             float rightMargin = 7f;
             Rect zlRect = new Rect(UI.screenWidth - Alert.Width, curBaseY - 24f, Alert.Width, 24f);
             Text.Font = GameFont.Small;
@@ -98,9 +108,10 @@ namespace FoodAlert
             GUI.EndGroup();
 
             TooltipHandler.TipRegion(zlRect, new TipSignal(
-                                                   () => string.Format("SomeFoodDesc".Translate(),
+                                                   () => string.Format("SomeFoodDescNew".Translate(),
                                                                        totalHumanEdibleNutrition.ToString("F0"),
                                                                        humansGettingFood.ToStringCached(),
+                                                                       totalFoodNeedPerDay.ToString("F0"),
                                                                        totalDaysOfFood.ToStringCached() + addendumForFlavour),
                                                    76515));
 

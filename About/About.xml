@@ -20,21 +20,28 @@
   <loadAfter>
     <li>brrainz.harmony</li>
   </loadAfter>
-  <description>
-    Update of Mehnis mod for RimWorld 1.1
-    https://steamcommunity.com/sharedfiles/filedetails/?id=1114619043
-
-    Support-chat:
-    https://discord.gg/SuhwVpM
-
-    Non-steam version:
-    https://github.com/emipa606/FoodAlert
+  <description>[img]https://i.imgur.com/WAEzk68.png[/img]
+Update of Mehnis mod
+https://steamcommunity.com/sharedfiles/filedetails/?id=1114619043
 
 - Added a setting for selecting the lowest preferability of food to be counted
 	DesperateOnly,RawBad,RawTasty,MealAwful,MealSimple,MealFine,MealLavish
 	Examples for each category shows in the config-dialog
+- Changed the calculations for food, instead using the exact amount the pawns require
+	This should make the mod show more correct values and also ignore pawns that do not eat
+- Russian translation fixed by Morbo
 
-    --- Original Description ---
+[img]https://i.imgur.com/7Gzt3Rg.png[/img]
+
+[table]
+	[tr]
+		[td][url=https://invite.gg/Mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
+		[td][url=https://github.com/emipa606/FoodAlert][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
+	[/tr]
+[/table]
+	
+[img]https://i.imgur.com/NOW7jU1.png[/img]
+
 Shows a persistent readout with the amount of food you currently have in storage, and an estimate of how long stocks will last. Prevent sudden starvation by knowing how your food supplies are doing.
 
 v0.1.1.1 Russian language added, thanks to Alex.
@@ -43,6 +50,6 @@ v0.1.0.1 Now has a way nicer readout with all the sexy things I wanted to add.
 
 Thanks to Brrainz - for Harmony and a lot of the code for that readout :)
 
-Languages:
+[h1]Languages:[/h1]
 Russian: Alex_1203</description>
 </ModMetaData>
