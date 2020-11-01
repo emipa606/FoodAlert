@@ -55,9 +55,12 @@ namespace FoodAlert
             var pawns = map.mapPawns.FreeColonistsAndPrisoners;
             foreach (Pawn pawn in pawns)
             {
-                var pawnNeed = pawn.needs.food.FoodFallPerTickAssumingCategory(HungerCategory.Fed, false) * 60000f;
-                //Log.Message($"{pawn.NameShortColored} needs {pawnNeed} food per day.");
-                totalFoodNeedPerDay += pawnNeed;
+                if (pawn?.needs?.food != null)
+                {
+                    var pawnNeed = pawn.needs.food.FoodFallPerTickAssumingCategory(HungerCategory.Fed) * 60000f;
+                    //Log.Message($"{pawn.NameShortColored} needs {pawnNeed} food per day.");
+                    totalFoodNeedPerDay += pawnNeed;
+                }
             }
             string addendumForFlavour = "\n    " + "SettingDescription".Translate() + ": " + LoadedModManager.GetMod<FoodAlertMod>().GetSettings<FoodAlertSettings>().foodPreferability;
             if(totalFoodNeedPerDay == 0f)
