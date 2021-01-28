@@ -2,6 +2,7 @@
 using RimWorld;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Verse;
 
@@ -25,15 +26,25 @@ namespace FoodAlert
             var selectedPreferabilityEnum = (FoodPreferability)Enum.Parse(typeof(FoodPreferability), selectedPreferability);
             foreach (KeyValuePair<ThingDef, int> keyValuePair in map.resourceCounter.AllCountedAmounts)
             {
-                if (keyValuePair.Key.IsNutritionGivingIngestible && keyValuePair.Key.ingestible.HumanEdible)
+                if (keyValuePair.Value <= 0)
                 {
-                    if (selectedPreferabilityEnum > keyValuePair.Key.ingestible.preferability)
-                    {
-                        continue;
-                    }
-
-                    num += keyValuePair.Key.GetStatValueAbstract(StatDefOf.Nutrition, null) * (float)keyValuePair.Value;
+                    continue;
                 }
+
+                if (!keyValuePair.Key.IsNutritionGivingIngestible)
+                {
+                    continue;
+                }
+
+                if (!keyValuePair.Key.ingestible.HumanEdible)
+                {
+                    continue;
+                }
+                if (selectedPreferabilityEnum > keyValuePair.Key.ingestible.preferability)
+                {
+                    continue;
+                }
+                num += keyValuePair.Key.GetStatValueAbstract(StatDefOf.Nutrition, null) * (float)keyValuePair.Value;
             }
             return num;
         }
