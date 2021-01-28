@@ -95,7 +95,7 @@ namespace FoodAlert
                     addendumForFlavour += "FoodAlert_Bunch".Translate();
                     break;
 
-                case int n when n >= 10:
+                case int n when n >= 4:
                     addendumForFlavour += "FoodAlert_Decent".Translate();
                     break;
                 case int n when n >= 1:
