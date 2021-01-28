@@ -28,7 +28,7 @@ namespace FoodAlert
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
-            Listing_Standard listing_Standard = new Listing_Standard();
+            var listing_Standard = new Listing_Standard();
             listing_Standard.Begin(inRect);
             listing_Standard.AddLabeledRadioList("SettingDescription".Translate(), preferabilities, ref settings.foodPreferability);
             listing_Standard.Label("SettingExplanation".Translate());

@@ -3,12 +3,13 @@
   <SomeFood>Food reserves</SomeFood>
   <SomeFoodDesc>Food is not of an immediate concern.\n\n    Full bars worth of food in storage: {0}\n    Colonists/prisoners getting food: {1}\n    Days worth of food in storage: {2}</SomeFoodDesc>
   <SomeFoodDescNew>Food is not of an immediate concern.\n\n    Full bars worth of food in storage: {0}\n    Colonists/prisoners getting food: {1}\n    Amount of food eaten per day: {2}\n    Days worth of food in storage: {3}</SomeFoodDescNew>
+  <LowFoodDesc>Food is a concern.\n\n    Full bars worth of food in storage: {0}\n    Colonists/prisoners getting food: {1}\n    Amount of food eaten per day: {2}\n    Days worth of food in storage: {3}</LowFoodDesc>
   <FoodAlert_DaysOfFood> days worth of food</FoodAlert_DaysOfFood>
   <FoodAlert_Decent>\n\nThat is a decent amount of food.</FoodAlert_Decent>
+  <FoodAlert_Poor>\n\nThat is a poor amount of food.</FoodAlert_Poor>
   <FoodAlert_Bunch>\n\nThat is a bunch of food.</FoodAlert_Bunch>
   <FoodAlert_Solid>\n\nThat is a solid amount of food.</FoodAlert_Solid>
   <FoodAlert_Ridiculous>\n\nThat is an utterly ridiculous amount of food.</FoodAlert_Ridiculous>
   <SettingDescription>Food preferability</SettingDescription>
   <SettingExplanation>\nExamples\n\nDesperateOnly:	fertilized eggs, ambrosia\nRawBad:		kibble, unfertilized eggs\nRawTasty:	milk, berries\nMealAwful:	nutrient paste meal\nMealSimple:	simple meal, pemmican\nMealFine:		fine meal, insect jelly\nMealLavish:	lavish meal</SettingExplanation>
-
 </LanguageData>
