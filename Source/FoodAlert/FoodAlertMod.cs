@@ -1,20 +1,15 @@
-﻿using RimWorld;
-using SettingsHelper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SettingsHelper;
 using UnityEngine;
 using Verse;
 
 namespace FoodAlert
 {
-    class FoodAlertMod : Mod
+    internal class FoodAlertMod : Mod
     {
-        public static FoodAlertSettings settings;
+        private static FoodAlertSettings settings;
 
-        public static string[] preferabilities = new string[] { "DesperateOnly", "RawBad", "RawTasty", "MealAwful", "MealSimple", "MealFine", "MealLavish" };
+        private static readonly string[] preferabilities =
+            {"DesperateOnly", "RawBad", "RawTasty", "MealAwful", "MealSimple", "MealFine", "MealLavish"};
 
         public FoodAlertMod(ModContentPack content) : base(content)
         {
@@ -30,7 +25,8 @@ namespace FoodAlert
         {
             var listing_Standard = new Listing_Standard();
             listing_Standard.Begin(inRect);
-            listing_Standard.AddLabeledRadioList("SettingDescription".Translate(), preferabilities, ref settings.foodPreferability);
+            listing_Standard.AddLabeledRadioList("SettingDescription".Translate(), preferabilities,
+                ref settings.foodPreferability);
             listing_Standard.Label("SettingExplanation".Translate());
             listing_Standard.End();
 

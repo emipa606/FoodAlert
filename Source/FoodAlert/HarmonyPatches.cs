@@ -1,30 +1,35 @@
-﻿using HarmonyLib;
+﻿using System;
+using HarmonyLib;
 using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Verse;
 
 namespace FoodAlert
 {
     [StaticConstructorOnStartup]
-    class HarmonyPatches
+    internal class HarmonyPatches
     {
+        private static float CachedNutrition;
+        private static float CachedNeed;
+        private static int CachedHumans;
+        public static readonly bool IsSosLoaded;
+
         static HarmonyPatches()
         {
             var harmony = new Harmony("mehni.rimworld.FoodAlert.main");
-
+            IsSosLoaded = ModLister.GetActiveModWithIdentifier("kentington.saveourship2") != null;
             harmony.Patch(AccessTools.Method(typeof(GlobalControlsUtility), nameof(GlobalControlsUtility.DoDate)), null,
-                new HarmonyMethod(typeof(HarmonyPatches), nameof(FoodCounter_NearDatePostfix)), null);
+                new HarmonyMethod(typeof(HarmonyPatches), nameof(FoodCounter_NearDatePostfix)));
         }
 
         private static float GetEdibleStuff(Map map)
         {
             var num = 0f;
-            var selectedPreferability = LoadedModManager.GetMod<FoodAlertMod>().GetSettings<FoodAlertSettings>().foodPreferability;
-            var selectedPreferabilityEnum = (FoodPreferability)Enum.Parse(typeof(FoodPreferability), selectedPreferability);
-            foreach (KeyValuePair<ThingDef, int> keyValuePair in map.resourceCounter.AllCountedAmounts)
+            var selectedPreferability = LoadedModManager.GetMod<FoodAlertMod>().GetSettings<FoodAlertSettings>()
+                .foodPreferability;
+            var selectedPreferabilityEnum =
+                (FoodPreferability) Enum.Parse(typeof(FoodPreferability), selectedPreferability);
+            foreach (var keyValuePair in map.resourceCounter.AllCountedAmounts)
             {
                 if (keyValuePair.Value <= 0)
                 {
@@ -40,20 +45,23 @@ namespace FoodAlert
                 {
                     continue;
                 }
+
                 if (selectedPreferabilityEnum > keyValuePair.Key.ingestible.preferability)
                 {
                     continue;
                 }
-                num += keyValuePair.Key.GetStatValueAbstract(StatDefOf.Nutrition, null) * (float)keyValuePair.Value;
+
+                num += keyValuePair.Key.GetStatValueAbstract(StatDefOf.Nutrition) * keyValuePair.Value;
             }
+
             return num;
         }
 
         private static void FoodCounter_NearDatePostfix(ref float curBaseY)
         {
-            Map map = Find.CurrentMap;
+            var map = Find.CurrentMap;
 
-            if (map == null || !map.IsPlayerHome)
+            if (map == null || !map.IsPlayerHome && !IsSosLoaded)
             {
                 return;
             }
@@ -67,15 +75,18 @@ namespace FoodAlert
                 CachedNutrition = GetEdibleStuff(map);
                 CachedNeed = 0f;
                 var pawns = map.mapPawns.FreeColonistsAndPrisoners;
-                foreach (Pawn pawn in pawns)
+                foreach (var pawn in pawns)
                 {
-                    if (pawn?.needs?.food != null)
+                    if (pawn?.needs?.food == null)
                     {
-                        var pawnNeed = pawn.needs.food.FoodFallPerTickAssumingCategory(HungerCategory.Fed) * 60000f;
-                        //Log.Message($"{pawn.NameShortColored} needs {pawnNeed} food per day.");
-                        CachedNeed += pawnNeed;
+                        continue;
                     }
+
+                    var pawnNeed = pawn.needs.food.FoodFallPerTickAssumingCategory(HungerCategory.Fed) * 60000f;
+                    //Log.Message($"{pawn.NameShortColored} needs {pawnNeed} food per day.");
+                    CachedNeed += pawnNeed;
                 }
+
                 CachedHumans = map.mapPawns.FreeColonistsAndPrisonersSpawnedCount;
             }
 
@@ -83,12 +94,15 @@ namespace FoodAlert
             //    return;
 
 
-            string addendumForFlavour = "\n    " + "SettingDescription".Translate() + ": " + LoadedModManager.GetMod<FoodAlertMod>().GetSettings<FoodAlertSettings>().foodPreferability;
+            string addendumForFlavour = "\n    " + "SettingDescription".Translate() + ": " +
+                                        LoadedModManager.GetMod<FoodAlertMod>().GetSettings<FoodAlertSettings>()
+                                            .foodPreferability;
             if (CachedNeed == 0f)
             {
                 addendumForFlavour = "\n\nTotal food-need is 0, that shouldnt happen.";
                 CachedNeed = 0.0001f;
             }
+
             var totalDaysOfFood = Mathf.FloorToInt(CachedNutrition / CachedNeed);
             string daysWorthOfHumanFood = $"{totalDaysOfFood}" + "FoodAlert_DaysOfFood".Translate();
 
@@ -124,6 +138,7 @@ namespace FoodAlert
             {
                 Widgets.DrawHighlight(zlRect);
             }
+
             var foodText = "SomeFoodDescNew";
             GUI.BeginGroup(zlRect);
             var startColor = GUI.color;
@@ -134,10 +149,12 @@ namespace FoodAlert
                 {
                     GUI.color = Color.red;
                 }
+
                 foodText = "LowFoodDesc";
             }
+
             Text.Anchor = TextAnchor.UpperRight;
-            Rect rect = zlRect.AtZero();
+            var rect = zlRect.AtZero();
             rect.xMax -= rightMargin;
 
             Widgets.Label(rect, daysWorthOfHumanFood);
@@ -146,18 +163,14 @@ namespace FoodAlert
             GUI.EndGroup();
 
             TooltipHandler.TipRegion(zlRect, new TipSignal(
-                                                   () => string.Format(foodText.Translate(),
-                                                                       CachedNutrition.ToString("F0"),
-                                                                       CachedHumans.ToStringCached(),
-                                                                       CachedNeed.ToString("F0"),
-                                                                       totalDaysOfFood.ToStringCached() + addendumForFlavour),
-                                                   76515));
+                () => string.Format(foodText.Translate(),
+                    CachedNutrition.ToString("F0"),
+                    CachedHumans.ToStringCached(),
+                    CachedNeed.ToString("F0"),
+                    totalDaysOfFood.ToStringCached() + addendumForFlavour),
+                76515));
 
             curBaseY -= zlRect.height;
         }
-
-        private static float CachedNutrition;
-        private static float CachedNeed;
-        private static int CachedHumans;
     }
 }
