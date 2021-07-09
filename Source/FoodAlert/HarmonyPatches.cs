@@ -108,22 +108,22 @@ namespace FoodAlert
 
             switch (totalDaysOfFood)
             {
-                case int n when n >= 100:
+                case { } n when n >= 100:
                     addendumForFlavour += "FoodAlert_Ridiculous".Translate();
                     break;
 
-                case int n when n >= 60:
+                case { } n when n >= 60:
                     addendumForFlavour += "FoodAlert_Solid".Translate();
                     break;
 
-                case int n when n >= 30:
+                case { } n when n >= 30:
                     addendumForFlavour += "FoodAlert_Bunch".Translate();
                     break;
 
-                case int n when n >= 4:
+                case { } n when n >= 4:
                     addendumForFlavour += "FoodAlert_Decent".Translate();
                     break;
-                case int n when n >= 1:
+                case { } n when n >= 1:
                     addendumForFlavour += "FoodAlert_Poor".Translate();
                     break;
                 default:

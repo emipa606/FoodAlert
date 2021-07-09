@@ -11,6 +11,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1114619043
 - Changed the calculations for food, instead using the exact amount the pawns require
 	This should make the mod show more correct values and also ignore pawns that do not eat
 - Russian translation fixed by Morbo
+- Added compatibility with https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131]SOS2
 
 ![Image](https://i.imgur.com/7Gzt3Rg.png)
 
