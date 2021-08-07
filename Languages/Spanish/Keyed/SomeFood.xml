@@ -10,6 +10,6 @@
   <FoodAlert_Bunch>\n\nUn montón de comida.</FoodAlert_Bunch>
   <FoodAlert_Solid>\n\nCantidad sólida de comida.</FoodAlert_Solid>
   <FoodAlert_Ridiculous>\n\nCantidad ridícula de comida.</FoodAlert_Ridiculous>
-  <SettingDescription>Preferibilidad alimentaria</SettingDescription>
+  <SettingDescription>Preferencia alimenticia</SettingDescription>
   <SettingExplanation>\nEjemplos\n\nDesperateOnly: huevos fertilizados, ambrosia\nRawBad: kibble, huevos sin fertilizar\nRawTasty: leche, bayas\nMealAwful: pasta nutritiva\nMealSimple: comida sencilla, pemmican\nComida buena: comida buena, jalea de insectos\nMealLavish: comida lujosa</SettingExplanation>
 </LanguageData>
