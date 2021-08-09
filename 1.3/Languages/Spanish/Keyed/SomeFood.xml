@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <SomeFood>Reservas de comida</SomeFood>
   <SomeFoodDesc>La comida no es una preocupación inmediata.\n\n Comida almacenada: {0}\n Colonos/presos recibiendo comida: {1}\n Días de comida almacenada: {2}</SomeFoodDesc>

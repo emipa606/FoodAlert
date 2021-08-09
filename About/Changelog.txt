@@ -1,5 +1,8 @@
 # Changelog for FoodAlert
 
+1.0.15.0 - Fix for the zero food issue and translations to Italian and Spanish, thanks angelolocritani and Ferchu 
+
+
 1.0.14.0 - Mod updated for 1.3 and passed autotests
 
 
