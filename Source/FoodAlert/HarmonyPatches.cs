@@ -150,7 +150,7 @@ namespace FoodAlert
                     GUI.color = Color.red;
                 }
 
-                foodText = "LowFoodDesc";
+                foodText = "LowFoodDescNew";
             }
 
             Text.Anchor = TextAnchor.UpperRight;

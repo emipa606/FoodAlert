@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <SomeFood>Riserve di cibo</SomeFood>
+  <SomeFoodDesc>Il cibo non è un problema immediato.\n\n    Barre equivalenti di cibo in dispensa: {0}\n    Coloni/prigionieri da sfamare: {1}\n    Giorni di cibo in dispensa: {2}</SomeFoodDesc>
+  <SomeFoodDescNew>Il cibo non è un problema immediato.\n\n    Barre equivalenti di cibo in dispensa: {0}\n    Coloni/prigionieri da sfamare: {1}\n    Quantità di cibo consumata al giorno: {2}\n    Giorni di cibo in dispensa: {3}</SomeFoodDescNew>
+  <LowFoodDescNew>Il cibo è un problema.\n\n    Barre equivalenti di cibo in dispensa: {0}\n    Coloni/prigionieri da sfamare: {1}\n    Quantità di cibo consumata al giorno: {2}\n    Giorni di cibo in dispensa: {3}</LowFoodDescNew>
+  <FoodAlert_DaysOfFood> giorni di cibo</FoodAlert_DaysOfFood>
+  <FoodAlert_Decent>\n\nÈ una discreta quantità di cibo.</FoodAlert_Decent>
+  <FoodAlert_Poor>\n\nÈ una misera quantità di cibo.</FoodAlert_Poor>
+  <FoodAlert_Bunch>\n\nÈ un mucchio di cibo.</FoodAlert_Bunch>
+  <FoodAlert_Solid>\n\nÈ una massiccia quantità di cibo.</FoodAlert_Solid>
+  <FoodAlert_Ridiculous>\n\nÈ una quantità assurda di cibo.</FoodAlert_Ridiculous>
+  <SettingDescription>Preferenza di cibo</SettingDescription>
+  <SettingExplanation>\nEsempi di\n\nDesperateOnly:	uova fecondate, ambrosia\nRawBad:		mangime, uova non fecondate\nRawTasty:	latte, bacche\nMealAwful:	pasta nutriente\nMealSimple:	pasto semplice, pemmican\nMealFine:		pasto buono, gelatina d'insetto\nMealLavish:	pasto prelibato</SettingExplanation>
+</LanguageData>

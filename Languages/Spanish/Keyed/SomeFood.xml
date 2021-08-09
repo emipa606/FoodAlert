@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <SomeFood>Reservas de comida</SomeFood>
+  <SomeFoodDesc>La comida no es una preocupación inmediata.\n\n Comida almacenada: {0}\n Colonos/presos recibiendo comida: {1}\n Días de comida almacenada: {2}</SomeFoodDesc>
+  <SomeFoodDescNew>La comida no es una preocupación inmediata.\n\n Comida almacenada: {0}\n Colonos/presos recibiendo comida: {1}\n Comida consumida por día: {2}\n Días de comida almacenada: {3}</SomeFoodDescNew>
+  <LowFoodDescNew>La comida es una preocupación. Comida almacenada: {0}\n Colonos/prisioneros recibiendo comida: {1}\n Comida consumida por día: {2}\n Días de comida almacenada: {3}</LowFoodDescNew>
+  <FoodAlert_DaysOfFood> días de comida</FoodAlert_DaysOfFood>
+  <FoodAlert_Decent>\n\nCantidad decente de comida.</FoodAlert_Decent>
+  <FoodAlert_Poor>\n\nPobre cantidad de comida.</FoodAlert_Poor>
+  <FoodAlert_Bunch>\n\nUn montón de comida.</FoodAlert_Bunch>
+  <FoodAlert_Solid>\n\nCantidad sólida de comida.</FoodAlert_Solid>
+  <FoodAlert_Ridiculous>\n\nCantidad ridícula de comida.</FoodAlert_Ridiculous>
+  <SettingDescription>Preferencia alimenticia</SettingDescription>
+  <SettingExplanation>\nEjemplos\n\nDesperateOnly: huevos fertilizados, ambrosia\nRawBad: kibble, huevos sin fertilizar\nRawTasty: leche, bayas\nMealAwful: pasta nutritiva\nMealSimple: comida sencilla, pemmican\nComida buena: comida buena, jalea de insectos\nMealLavish: comida lujosa</SettingExplanation>
+</LanguageData>
