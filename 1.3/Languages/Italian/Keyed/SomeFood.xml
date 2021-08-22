@@ -4,6 +4,7 @@
   <SomeFoodDesc>Il cibo non è un problema immediato.\n\n    Barre equivalenti di cibo in dispensa: {0}\n    Coloni/prigionieri da sfamare: {1}\n    Giorni di cibo in dispensa: {2}</SomeFoodDesc>
   <SomeFoodDescNew>Il cibo non è un problema immediato.\n\n    Barre equivalenti di cibo in dispensa: {0}\n    Coloni/prigionieri da sfamare: {1}\n    Quantità di cibo consumata al giorno: {2}\n    Giorni di cibo in dispensa: {3}</SomeFoodDescNew>
   <LowFoodDescNew>Il cibo è un problema.\n\n    Barre equivalenti di cibo in dispensa: {0}\n    Coloni/prigionieri da sfamare: {1}\n    Quantità di cibo consumata al giorno: {2}\n    Giorni di cibo in dispensa: {3}</LowFoodDescNew>
+  <LowFoodAddendum>\nPotrebbe essere disponibile cibo con una preferenza più bassa</LowFoodAddendum>
   <FoodAlert_DaysOfFood> giorni di cibo</FoodAlert_DaysOfFood>
   <FoodAlert_Decent>\n\nÈ una discreta quantità di cibo.</FoodAlert_Decent>
   <FoodAlert_Poor>\n\nÈ una misera quantità di cibo.</FoodAlert_Poor>
