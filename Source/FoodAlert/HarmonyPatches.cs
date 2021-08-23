@@ -61,7 +61,9 @@ namespace FoodAlert
         {
             var map = Find.CurrentMap;
 
-            if (map == null || !map.IsPlayerHome && !IsSosLoaded)
+            if (map == null ||
+                !map.IsPlayerHome && !IsSosLoaded ||
+                map.IsPlayerHome && map.mapPawns.AnyColonistSpawned && map.resourceCounter.TotalHumanEdibleNutrition < 4f * map.mapPawns.FreeColonistsSpawnedCount) //Vanilla low food alert condition)
             {
                 return;
             }
@@ -130,27 +132,17 @@ namespace FoodAlert
 
                 case { } n when n >= 0:
 
-                    if (map.IsPlayerHome &&
-                        map.mapPawns.AnyColonistSpawned &&
-                        map.resourceCounter.TotalHumanEdibleNutrition < 4f * map.mapPawns.FreeColonistsSpawnedCount) //Vanilla low food alert condition
-                    {
-                        //there's already the vanilla LowFoodAlert displayed -> hide our Alert
-                        return;
-                    }
-                    else
-                    {
-                        /* there's food but since there's no vanilla alert active, probably we are counting food with an higher preferability
-                         * in any case, let's dispaly at least a poor food alert 
-                         */
-                        addendumForFlavour += "FoodAlert_Poor".Translate();
+                    /* there's food but since there's no vanilla alert active, probably we are counting food with an higher preferability
+                     * in any case, let's dispaly at least a poor food alert 
+                     */
+                    addendumForFlavour += "FoodAlert_Poor".Translate();
 
-                        if (selectedPreferabilityEnum > FoodPreferability.DesperateOnly) 
-                        {
-                            // and a warning that more food may be available
-                            addendumForFlavour += "LowFoodAddendum".Translate();
-                        }
-
+                    if (selectedPreferabilityEnum > FoodPreferability.DesperateOnly)
+                    {
+                        // and a warning that more food may be available
+                        addendumForFlavour += "LowFoodAddendum".Translate();
                     }
+
                     break;
                 default:
                     return;
