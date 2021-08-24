@@ -9,7 +9,7 @@ namespace FoodAlert
         private static FoodAlertSettings settings;
 
         private static readonly string[] preferabilities =
-            {"DesperateOnly", "RawBad", "RawTasty", "MealAwful", "MealSimple", "MealFine", "MealLavish"};
+            { "DesperateOnly", "RawBad", "RawTasty", "MealAwful", "MealSimple", "MealFine", "MealLavish" };
 
         public FoodAlertMod(ModContentPack content) : base(content)
         {

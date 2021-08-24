@@ -63,7 +63,8 @@ namespace FoodAlert
 
             if (map == null ||
                 !map.IsPlayerHome && !IsSosLoaded ||
-                map.IsPlayerHome && map.mapPawns.AnyColonistSpawned && map.resourceCounter.TotalHumanEdibleNutrition < 4f * map.mapPawns.FreeColonistsSpawnedCount) //Vanilla low food alert condition)
+                map.IsPlayerHome && map.mapPawns.AnyColonistSpawned && map.resourceCounter.TotalHumanEdibleNutrition <
+                4f * map.mapPawns.FreeColonistsSpawnedCount) //Vanilla low food alert condition)
             {
                 return;
             }
@@ -97,7 +98,7 @@ namespace FoodAlert
 
 
             var selectedPreferability = LoadedModManager.GetMod<FoodAlertMod>().GetSettings<FoodAlertSettings>()
-               .foodPreferability;
+                .foodPreferability;
             var selectedPreferabilityEnum =
                 (FoodPreferability)Enum.Parse(typeof(FoodPreferability), selectedPreferability);
 
@@ -114,23 +115,23 @@ namespace FoodAlert
 
             switch (totalDaysOfFood)
             {
-                case { } n when n >= 100:
+                case >= 100:
                     addendumForFlavour += "FoodAlert_Ridiculous".Translate();
                     break;
 
-                case { } n when n >= 60:
+                case >= 60:
                     addendumForFlavour += "FoodAlert_Solid".Translate();
                     break;
 
-                case { } n when n >= 30:
+                case >= 30:
                     addendumForFlavour += "FoodAlert_Bunch".Translate();
                     break;
 
-                case { } n when n >= 4:
+                case >= 4:
                     addendumForFlavour += "FoodAlert_Decent".Translate();
                     break;
 
-                case { } n when n >= 0:
+                case >= 0:
 
                     /* there's food but since there's no vanilla alert active, probably we are counting food with an higher preferability
                      * in any case, let's dispaly at least a poor food alert 
