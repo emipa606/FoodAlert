@@ -28,7 +28,7 @@ namespace FoodAlert
             var selectedPreferability = LoadedModManager.GetMod<FoodAlertMod>().GetSettings<FoodAlertSettings>()
                 .foodPreferability;
             var selectedPreferabilityEnum =
-                (FoodPreferability) Enum.Parse(typeof(FoodPreferability), selectedPreferability);
+                (FoodPreferability)Enum.Parse(typeof(FoodPreferability), selectedPreferability);
             foreach (var keyValuePair in map.resourceCounter.AllCountedAmounts)
             {
                 if (keyValuePair.Value <= 0)
@@ -61,7 +61,9 @@ namespace FoodAlert
         {
             var map = Find.CurrentMap;
 
-            if (map == null || !map.IsPlayerHome && !IsSosLoaded)
+            if (map == null ||
+                !map.IsPlayerHome && !IsSosLoaded ||
+                map.IsPlayerHome && map.mapPawns.AnyColonistSpawned && map.resourceCounter.TotalHumanEdibleNutrition < 4f * map.mapPawns.FreeColonistsSpawnedCount) //Vanilla low food alert condition)
             {
                 return;
             }
@@ -94,9 +96,13 @@ namespace FoodAlert
             //    return;
 
 
+            var selectedPreferability = LoadedModManager.GetMod<FoodAlertMod>().GetSettings<FoodAlertSettings>()
+               .foodPreferability;
+            var selectedPreferabilityEnum =
+                (FoodPreferability)Enum.Parse(typeof(FoodPreferability), selectedPreferability);
+
             string addendumForFlavour = "\n    " + "SettingDescription".Translate() + ": " +
-                                        LoadedModManager.GetMod<FoodAlertMod>().GetSettings<FoodAlertSettings>()
-                                            .foodPreferability;
+                                        selectedPreferability;
             if (CachedNeed == 0f)
             {
                 addendumForFlavour = "\n\nTotal food-need is 0, that shouldnt happen.";
@@ -123,8 +129,20 @@ namespace FoodAlert
                 case { } n when n >= 4:
                     addendumForFlavour += "FoodAlert_Decent".Translate();
                     break;
-                case { } n when n >= 1:
+
+                case { } n when n >= 0:
+
+                    /* there's food but since there's no vanilla alert active, probably we are counting food with an higher preferability
+                     * in any case, let's dispaly at least a poor food alert 
+                     */
                     addendumForFlavour += "FoodAlert_Poor".Translate();
+
+                    if (selectedPreferabilityEnum > FoodPreferability.DesperateOnly)
+                    {
+                        // and a warning that more food may be available
+                        addendumForFlavour += "LowFoodAddendum".Translate();
+                    }
+
                     break;
                 default:
                     return;
