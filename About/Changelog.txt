@@ -1,5 +1,8 @@
 # Changelog for FoodAlert
 
+1.0.17.0 - New version of 1SettingsHelper
+
+
 1.0.16.0 - Hides if vanilla warning is active, hints that more food might be available if preferrability is high
 
 
