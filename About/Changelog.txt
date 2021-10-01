@@ -1,5 +1,8 @@
 # Changelog for FoodAlert
 
+1.0.18.0 - German translation added, thanks thephluxer!
+
+
 1.0.17.0 - New version of 1SettingsHelper
 
 
