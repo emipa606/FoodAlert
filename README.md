@@ -14,6 +14,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1114619043
 - Added compatibility with https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131]SOS2
 - Italian translation by arl85
 - Spanish translation by Ferchu
+- German translation by thephluxer
 
 ![Image](https://i.imgur.com/pufA0kM.png)
 

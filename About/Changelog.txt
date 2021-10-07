@@ -1,5 +1,8 @@
 # Changelog for FoodAlert
 
+1.0.19.0 - Added dynamic update timer based on days of food left. Also a slider for a static value if needed
+
+
 1.0.18.0 - German translation added, thanks thephluxer!
 
 

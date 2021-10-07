@@ -12,6 +12,9 @@ namespace FoodAlert
         private static float CachedNutrition;
         private static float CachedNeed;
         private static int CachedHumans;
+        private static int CachedDaysWorthOfFood;
+        private static int NextUpdateTick;
+        private static bool VanillaActive;
         public static readonly bool IsSosLoaded;
 
         static HarmonyPatches()
@@ -25,8 +28,7 @@ namespace FoodAlert
         private static float GetEdibleStuff(Map map)
         {
             var num = 0f;
-            var selectedPreferability = LoadedModManager.GetMod<FoodAlertMod>().GetSettings<FoodAlertSettings>()
-                .foodPreferability;
+            var selectedPreferability = FoodAlertMod.settings.foodPreferability;
             var selectedPreferabilityEnum =
                 (FoodPreferability)Enum.Parse(typeof(FoodPreferability), selectedPreferability);
             foreach (var keyValuePair in map.resourceCounter.AllCountedAmounts)
@@ -57,24 +59,37 @@ namespace FoodAlert
             return num;
         }
 
-        private static void FoodCounter_NearDatePostfix(ref float curBaseY)
+        private static bool ShouldUpdate()
         {
-            var map = Find.CurrentMap;
-
-            if (map == null ||
-                !map.IsPlayerHome && !IsSosLoaded ||
-                map.IsPlayerHome && map.mapPawns.AnyColonistSpawned && map.resourceCounter.TotalHumanEdibleNutrition <
-                4f * map.mapPawns.FreeColonistsSpawnedCount) //Vanilla low food alert condition)
+            if (!FoodAlertMod.settings.dynamicupdate)
             {
-                return;
+                return Find.TickManager.TicksGame % FoodAlertMod.settings.updatefrequency == 0;
             }
 
-            //if (Find.TickManager.TicksGame < 15000)
-            //    return;
-            var updateFoodInfo = Find.TickManager.TicksGame % 400 == 0;
+            return NextUpdateTick == 0 || Find.TickManager.TicksGame >= NextUpdateTick;
+        }
 
-            if (updateFoodInfo)
+        private static void FoodCounter_NearDatePostfix(ref float curBaseY)
+        {
+            if (ShouldUpdate())
             {
+                VanillaActive = false;
+                var map = Find.CurrentMap;
+                if (map == null ||
+                    !map.IsPlayerHome && !IsSosLoaded ||
+                    map.IsPlayerHome && map.mapPawns.AnyColonistSpawned &&
+                    map.resourceCounter.TotalHumanEdibleNutrition <
+                    4f * map.mapPawns.FreeColonistsSpawnedCount) //Vanilla low food alert condition)
+                {
+                    if (FoodAlertMod.settings.dynamicupdate)
+                    {
+                        NextUpdateTick = Find.TickManager.TicksGame + 400;
+                    }
+
+                    VanillaActive = true;
+                    return;
+                }
+
                 CachedNutrition = GetEdibleStuff(map);
                 CachedNeed = 0f;
                 var pawns = map.mapPawns.FreeColonistsAndPrisoners;
@@ -86,16 +101,31 @@ namespace FoodAlert
                     }
 
                     var pawnNeed = pawn.needs.food.FoodFallPerTickAssumingCategory(HungerCategory.Fed) * 60000f;
-                    //Log.Message($"{pawn.NameShortColored} needs {pawnNeed} food per day.");
                     CachedNeed += pawnNeed;
                 }
 
                 CachedHumans = map.mapPawns.FreeColonistsAndPrisonersSpawnedCount;
+                if (CachedNeed == 0f)
+                {
+                    CachedNeed = 0.0001f;
+                }
+
+                var daysWorthActual = CachedNutrition / CachedNeed;
+                if (FoodAlertMod.settings.dynamicupdate)
+                {
+                    NextUpdateTick = Find.TickManager.TicksGame +
+                                     (int)Math.Round(Math.Min(Math.Max(daysWorthActual * 400, 100), 10000));
+                    //Log.Message(
+                    //    $"Setting next update to {NextUpdateTick} ({NextUpdateTick - Find.TickManager.TicksGame} ticks)");
+                }
+
+                CachedDaysWorthOfFood = Mathf.FloorToInt(daysWorthActual);
             }
 
-            //if (totalHumanEdibleNutrition < 4f * map.mapPawns.FreeColonistsSpawnedCount)
-            //    return;
-
+            if (VanillaActive)
+            {
+                return;
+            }
 
             var selectedPreferability = LoadedModManager.GetMod<FoodAlertMod>().GetSettings<FoodAlertSettings>()
                 .foodPreferability;
@@ -104,16 +134,9 @@ namespace FoodAlert
 
             string addendumForFlavour = "\n    " + "SettingDescription".Translate() + ": " +
                                         selectedPreferability;
-            if (CachedNeed == 0f)
-            {
-                addendumForFlavour = "\n\nTotal food-need is 0, that shouldnt happen.";
-                CachedNeed = 0.0001f;
-            }
+            string daysWorthOfHumanFood = $"{CachedDaysWorthOfFood}" + "FoodAlert_DaysOfFood".Translate();
 
-            var totalDaysOfFood = Mathf.FloorToInt(CachedNutrition / CachedNeed);
-            string daysWorthOfHumanFood = $"{totalDaysOfFood}" + "FoodAlert_DaysOfFood".Translate();
-
-            switch (totalDaysOfFood)
+            switch (CachedDaysWorthOfFood)
             {
                 case >= 100:
                     addendumForFlavour += "FoodAlert_Ridiculous".Translate();
@@ -161,10 +184,10 @@ namespace FoodAlert
             var foodText = "SomeFoodDescNew";
             GUI.BeginGroup(zlRect);
             var startColor = GUI.color;
-            if (totalDaysOfFood <= 3)
+            if (CachedDaysWorthOfFood <= 3)
             {
                 GUI.color = Color.yellow;
-                if (totalDaysOfFood <= 1)
+                if (CachedDaysWorthOfFood <= 1)
                 {
                     GUI.color = Color.red;
                 }
@@ -186,7 +209,7 @@ namespace FoodAlert
                     CachedNutrition.ToString("F0"),
                     CachedHumans.ToStringCached(),
                     CachedNeed.ToString("F0"),
-                    totalDaysOfFood.ToStringCached() + addendumForFlavour),
+                    CachedDaysWorthOfFood.ToStringCached() + addendumForFlavour),
                 76515));
 
             curBaseY -= zlRect.height;
