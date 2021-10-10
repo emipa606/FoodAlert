@@ -15,6 +15,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1114619043
 - Italian translation by arl85
 - Spanish translation by Ferchu
 - German translation by thephluxer
+- Food calculations should now be done more seldom when there is a lot of food. There is a slider for setting a static update-value if needed.
 
 ![Image](https://i.imgur.com/pufA0kM.png)
 
