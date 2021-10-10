@@ -13,4 +13,9 @@
   <FoodAlert_Ridiculous>\n\nÈ una quantità assurda di cibo.</FoodAlert_Ridiculous>
   <SettingDescription>Preferenza di cibo</SettingDescription>
   <SettingExplanation>\nEsempi di\n\nDesperateOnly:	uova fecondate, ambrosia\nRawBad:		mangime, uova non fecondate\nRawTasty:	latte, bacche\nMealAwful:	pasta nutriente\nMealSimple:	pasto semplice, pemmican\nMealFine:		pasto buono, gelatina d'insetto\nMealLavish:	pasto prelibato</SettingExplanation>
+  <FA.updatetype.label>Frequenza d'aggiornamento</FA.updatetype.label>
+  <FA.typedynamic.label>Dinamica</FA.typedynamic.label>
+  <FA.typedynamic.description>Aggiorna il conteggio del cibo in base ai giorni di cibo in dispensa. Più cibo è disponibile, meno frequentemente sarà aggiornato il contatore. Migliora le performance nelle colonie più grandi.</FA.typedynamic.description>
+  <FA.typestatic.slider>Aggiorna ogni {0} ore</FA.typestatic.slider>
+  <FA.modversion>Versione mod installata: {0}</FA.modversion>
 </LanguageData>
