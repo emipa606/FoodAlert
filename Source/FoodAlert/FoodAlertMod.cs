@@ -1,6 +1,5 @@
 ﻿using System;
 using Mlie;
-using SettingsHelper;
 using UnityEngine;
 using Verse;
 
@@ -31,8 +30,14 @@ internal class FoodAlertMod : Mod
     {
         var listing_Standard = new Listing_Standard();
         listing_Standard.Begin(inRect);
-        listing_Standard.AddLabeledRadioList("SettingDescription".Translate(), preferabilities,
-            ref settings.foodPreferability);
+        foreach (var preferability in preferabilities)
+        {
+            if (listing_Standard.RadioButton(preferability, settings.foodPreferability == preferability))
+            {
+                settings.foodPreferability = preferability;
+            }
+        }
+
         listing_Standard.Label("SettingExplanation".Translate());
         listing_Standard.GapLine();
         listing_Standard.Label("FA.updatetype.label".Translate());
@@ -40,9 +45,9 @@ internal class FoodAlertMod : Mod
             "FA.typedynamic.description".Translate());
         if (!settings.dynamicupdate)
         {
-            listing_Standard.AddLabeledSlider(
+            settings.updatefrequency = listing_Standard.SliderLabeled(
                 "FA.typestatic.slider".Translate(Math.Round((decimal)settings.updatefrequency / 2500, 2)),
-                ref settings.updatefrequency, 100, 10000);
+                settings.updatefrequency, 100, 10000);
         }
 
         if (currentVersion != null)
