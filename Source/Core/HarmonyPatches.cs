@@ -1,10 +1,11 @@
 ﻿using System;
+using FoodAlert.Config;
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace FoodAlert;
+namespace FoodAlert.Core;
 
 [StaticConstructorOnStartup]
 internal class HarmonyPatches

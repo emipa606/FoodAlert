@@ -1,6 +1,6 @@
 ﻿using Verse;
 
-namespace FoodAlert;
+namespace FoodAlert.Config;
 
 internal class FoodAlertSettings : ModSettings
 {

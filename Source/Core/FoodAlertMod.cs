@@ -1,8 +1,8 @@
-﻿using System;
+﻿using FoodAlert.Config;
 using UnityEngine;
 using Verse;
 
-namespace FoodAlert;
+namespace FoodAlert.Core;
 
 /// <summary>
 /// mod配置
@@ -37,7 +37,7 @@ internal class FoodAlertMod : Mod
     }
 
     /// <summary>
-    /// mod标签
+    /// mod标识符
     /// </summary>
     /// <returns></returns>
     public override string SettingsCategory()
