@@ -1,0 +1,73 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputPath>\bin</OutputPath>
+        <TargetFramework>net48</TargetFramework>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+        <DebugType>None</DebugType>
+        <LangVersion>latest</LangVersion>
+        <FileVersion>1.4.1</FileVersion>
+    </PropertyGroup>
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="0Harmony">
+          <HintPath>DLL\0Harmony.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Assembly-CSharp">
+          <HintPath>DLL\Assembly-CSharp.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="HarmonyMod">
+          <HintPath>DLL\HarmonyMod.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="HugsLib">
+          <HintPath>DLL\HugsLib.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Xml" />
+        <Reference Include="UnityEngine">
+          <HintPath>DLL\UnityEngine.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+          <HintPath>DLL\UnityEngine.CoreModule.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.IMGUIModule">
+          <HintPath>DLL\UnityEngine.IMGUIModule.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.TextRenderingModule">
+          <HintPath>DLL\UnityEngine.TextRenderingModule.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+    </ItemGroup>
+    <!-- 自动部署 -->
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Exec Command="copy &quot;$(ProjectDir)bin\Debug\*.dll&quot; &quot;$(ProjectDir)..\1.3\Assemblies\*.dll&quot;" />
+    </Target>
+</Project>
