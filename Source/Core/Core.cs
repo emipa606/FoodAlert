@@ -40,11 +40,6 @@ internal class Core
     private static int _nextUpdateTick;
 
     /// <summary>
-    /// 是否允许更新数据
-    /// </summary>
-    private static bool _vanillaActive = true;
-
-    /// <summary>
     /// 判断Sos2的加载状态（未实装）
     /// </summary>
     public static readonly bool isSosLoaded;
@@ -56,7 +51,7 @@ internal class Core
     {
         Harmony harmony = new Harmony("mehni.rimworld.FoodAlert.main");
         harmony.Patch(AccessTools.Method(typeof(GlobalControlsUtility), nameof(GlobalControlsUtility.DoDate)), null,
-            new HarmonyMethod(typeof(Core), nameof(UpdateData)));
+            new HarmonyMethod(typeof(Core), nameof(ShouldUpdate)));
     }
 
     /// <summary>
@@ -109,17 +104,26 @@ internal class Core
     /// 是否允许更新数据
     /// </summary>
     /// <returns></returns>
-    private static bool ShouldUpdate()
+    private static void ShouldUpdate(ref float curBaseY)
     {
         // 不使用优化更新频率
         if (!FoodAlertMod.Settings.Dynamicupdate)
         {
             // 游戏时间到达指定更新时间
-            return Find.TickManager.TicksGame % FoodAlertMod.Settings.Updatefrequency == 0;
+            if (Find.TickManager.TicksGame % FoodAlertMod.Settings.Updatefrequency == 0)
+            {
+                UpdateData(ref curBaseY);
+            }
         }
 
         // 优化更新频率等于0 或 游戏时间大于或等于优化更新频率指定的下一次更新时间
-        return _nextUpdateTick == 0 || Find.TickManager.TicksGame >= _nextUpdateTick;
+        if (_nextUpdateTick == 0 || Find.TickManager.TicksGame >= _nextUpdateTick)
+        {
+            UpdateData(ref curBaseY);
+        }
+
+        // TODO: 我不知道为什么 不在这里加载UI 在其他地方就会不显示UI...
+        UpdateTab(ref curBaseY);
     }
 
     /// <summary>
@@ -128,22 +132,6 @@ internal class Core
     /// <param name="curBaseY"></param>
     private static void UpdateData(ref float curBaseY)
     {
-        // 不允许更新数据
-        if (!ShouldUpdate())
-        {
-            return;
-        }
-
-        // 正在更新中
-        if (!_vanillaActive)
-        {
-            Tools.Debug.Log("UpdateData Return");
-            return;
-        }
-
-        Tools.Debug.Log("UpdateData _vanillaActive:" + _vanillaActive);
-
-        _vanillaActive = false;
         // 获取当前的地图
         var map = Find.CurrentMap;
         // 获取当前食物数量
@@ -161,8 +149,6 @@ internal class Core
 
             // 按照殖民者都能吃饱的情况下计算每天需要消耗的食物
             var pawnNeed = pawn.needs.food.FoodFallPerTickAssumingCategory(HungerCategory.Fed) * 60000f;
-            Tools.Debug.Log(string.Format("{0}每天消耗食物{1}，目前饥饿程度{2}", pawn.Name, pawnNeed,
-                pawn.needs.food.CurCategory));
             _cachedNeed += pawnNeed;
         }
 
@@ -185,8 +171,8 @@ internal class Core
                               (int)Math.Round(Math.Min(_cachedDaysWorthOfFood * 400, 10000));
         }
 
-        UpdateTab(ref curBaseY);
-        Tools.Debug.Log("UpdateData _vanillaActive:" + _vanillaActive);
+        Tools.Debug.Log(
+            $"当前食物{_cachedNutrition.ToString("F1")} 食物获取{_cachedHumans.ToString("F1")} 每日消耗{_cachedNeed.ToString("F1")} 可用天数{_cachedDaysWorthOfFood.ToString("F1")}");
     }
 
     /// <summary>
@@ -195,15 +181,17 @@ internal class Core
     /// <param name="curBaseY"></param>
     private static void UpdateTab(ref float curBaseY)
     {
-        Tools.Debug.Log("UpdateTab curBaseY:" + curBaseY);
+        // 食物等级
         String selectedPreferability = FoodAlertMod.Settings.FoodPreferability;
+        // 食物等级枚举
         FoodPreferability selectedPreferabilityEnum =
             (FoodPreferability)Enum.Parse(typeof(FoodPreferability), selectedPreferability);
-
-        string addendumForFlavour = "\n    " + "SettingDescription".Translate() + ": " +
+        // 食物偏好相关
+        string addendumForFlavour = "\n" + "SettingDescription".Translate() + ": " +
                                     selectedPreferability;
-        string daysWorthOfHumanFood = $"{_cachedDaysWorthOfFood}" + "FoodAlert_DaysOfFood".Translate();
-
+        // 每日食物消耗
+        string daysWorthOfHumanFood = $"{_cachedDaysWorthOfFood.ToString("F1")}" + "FoodAlert_DaysOfFood".Translate();
+        // 根据食物可用天数判断
         switch (_cachedDaysWorthOfFood)
         {
             case >= 100:
@@ -240,21 +228,26 @@ internal class Core
                 return;
         }
 
-        var rightMargin = 7f;
-        var zlRect = new Rect(UI.screenWidth - Alert.Width, curBaseY - 24f, Alert.Width, 24f);
+        float rightMargin = 7f;
+        Rect zlRect = new Rect(UI.screenWidth - Alert.Width, curBaseY - 24f, Alert.Width, 22f);
         Text.Font = GameFont.Small;
 
+        // 鼠标移入时画出强调色
         if (Mouse.IsOver(zlRect))
         {
             Widgets.DrawHighlight(zlRect);
         }
 
-        var foodText = "SomeFoodDescNew";
+        String foodText = "SomeFoodDescNew";
+
+        // 在此处创建GUI
         GUI.BeginGroup(zlRect);
-        var startColor = GUI.color;
+
+        // 可供食用天数小于等于3
         if (_cachedDaysWorthOfFood <= 3)
         {
             GUI.color = Color.yellow;
+            // 可供食用天数小于等于1
             if (_cachedDaysWorthOfFood <= 1)
             {
                 GUI.color = Color.red;
@@ -263,15 +256,21 @@ internal class Core
             foodText = "LowFoodDescNew";
         }
 
+        // 文本锚点在右上角
         Text.Anchor = TextAnchor.UpperRight;
-        var rect = zlRect.AtZero();
+        Rect rect = zlRect.AtZero();
+        // 横坐标减少
         rect.xMax -= rightMargin;
 
+        // 创建label
         Widgets.Label(rect, daysWorthOfHumanFood);
+        // 文本锚点在左上角
         Text.Anchor = TextAnchor.UpperLeft;
-        GUI.color = startColor;
+        GUI.color = Color.white;
+        // GUI创建结束
         GUI.EndGroup();
 
+        // 创建提示
         TooltipHandler.TipRegion(zlRect, new TipSignal(
             () => string.Format(foodText.Translate(),
                 _cachedNutrition.ToString("F1"),
@@ -281,7 +280,5 @@ internal class Core
             76515));
 
         curBaseY -= zlRect.height;
-        _vanillaActive = true;
-        Tools.Debug.Log("UpdateTab End");
     }
 }

@@ -7,9 +7,9 @@
   <LowFoodDescNew>食物是一个令人担忧的问题\n\n 存储的食物量：{0}\n 殖民者获取的食物量：{1}\n 每天消耗的食物量：{2}\n 可用的天数：{3}</LowFoodDescNew>
   <LowFoodAddendum>\n可能会有较差的食物供应</LowFoodAddendum>
   <FoodAlert_DaysOfFood>天的食物</FoodAlert_DaysOfFood>
-  <FoodAlert_Decent>\n\n相当多的食物</FoodAlert_Decent>
+  <FoodAlert_Decent>\n\n有一些食物</FoodAlert_Decent>
   <FoodAlert_Poor>\n\n可怜的食物储备</FoodAlert_Poor>
-  <FoodAlert_Bunch>\n\n有一些食物</FoodAlert_Bunch>
+  <FoodAlert_Bunch>\n\n相当多的食物</FoodAlert_Bunch>
   <FoodAlert_Solid>\n\n很可靠的食物储备</FoodAlert_Solid>
   <FoodAlert_Ridiculous>\n\n多到烂在仓库里的食物</FoodAlert_Ridiculous>
   <SettingDescription>食物偏好</SettingDescription>
