@@ -5,7 +5,7 @@ namespace FoodAlert.Tools;
 /// <summary>
 /// 工具类
 /// </summary>
-public class Tools
+public class Debug
 {
     /// <summary>
     /// mod名称
@@ -17,6 +17,6 @@ public class Tools
     /// </summary>
     public static void Log(string log)
     {
-        Verse.Log.Message(string.Format("[{0} {1}]: {2}", ModName, DateTime.Now, log));
+        Verse.Log.Message(string.Format("[{0}] {1} {2}", ModName, DateTime.Now, log));
     }
 }

@@ -55,18 +55,18 @@ internal class FoodAlertMod : Mod
         listingStandard.Begin(inRect);
         foreach (var preference in Preference)
         {
-            if (listingStandard.RadioButton(preference, Settings.foodPreferability == preference))
+            if (listingStandard.RadioButton(preference, Settings.FoodPreferability == preference))
             {
-                Settings.foodPreferability = preference;
+                Settings.FoodPreferability = preference;
             }
         }
 
         listingStandard.Label("SettingExplanation".Translate());
         listingStandard.GapLine();
         listingStandard.Label("FA.updatetype.label".Translate());
-        listingStandard.CheckboxLabeled("FA.typedynamic.label".Translate(), ref Settings.dynamicupdate,
+        listingStandard.CheckboxLabeled("FA.typedynamic.label".Translate(), ref Settings.Dynamicupdate,
             "FA.typedynamic.description".Translate());
-        if (!Settings.dynamicupdate)
+        if (!Settings.Dynamicupdate)
         {
             // Settings.updatefrequency = listingStandard.SliderLabeled(
             //     "FA.typestatic.slider".Translate(Math.Round((decimal)Settings.updatefrequency / 2500, 2)),

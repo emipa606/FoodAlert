@@ -10,23 +10,23 @@ internal class FoodAlertSettings : ModSettings
     /// <summary>
     /// 优化更新频率
     /// </summary>
-    public bool dynamicupdate = true;
+    public bool Dynamicupdate = true;
 
     /// <summary>
     /// 食物等级
     /// </summary>
-    public string foodPreferability = "RawBad";
+    public string FoodPreferability = "RawBad";
 
     /// <summary>
     /// 更新频率
     /// </summary>
-    public float updatefrequency = 400;
+    public float Updatefrequency = 400;
 
     public override void ExposeData()
     {
         base.ExposeData();
-        Scribe_Values.Look(ref foodPreferability, "foodPreferability", "RawBad", true);
-        Scribe_Values.Look(ref dynamicupdate, "dynamicupdate", true);
-        Scribe_Values.Look(ref updatefrequency, "updatefrequency", 400);
+        Scribe_Values.Look(ref FoodPreferability, "FoodPreferability", "RawBad", true);
+        Scribe_Values.Look(ref Dynamicupdate, "Dynamicupdate", true);
+        Scribe_Values.Look(ref Updatefrequency, "Updatefrequency", 400);
     }
 }
