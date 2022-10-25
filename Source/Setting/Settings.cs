@@ -1,5 +1,5 @@
-﻿using System;
-using FoodAlert.Config;
+﻿using FoodAlert.Config;
+using FoodAlert.Tools;
 using UnityEngine;
 using Verse;
 
@@ -33,16 +33,17 @@ internal class Settings : Mod
     public Settings(ModContentPack content) : base(content)
     {
         Config = GetSettings<SettingConfig>();
-        // _currentVersion =ModLister.GetActiveModWithIdentifier("Mlie.FoodAlert");
+        _currentVersion = XmlApi.GetXml(".\\Mods\\2017538067\\About\\Manifest.xml",
+            "Manifest/version");
     }
 
     /// <summary>
-    /// mod标识符
+    /// 设置中显示的mod名称
     /// </summary>
     /// <returns></returns>
     public override string SettingsCategory()
     {
-        return "Food Alert";
+        return "Food Alert 粮食储备";
     }
 
     /// <summary>
@@ -68,9 +69,9 @@ internal class Settings : Mod
             "FA.typedynamic.description".Translate());
         if (!Config.Dynamicupdate)
         {
-            // Settings.Updatefrequency = listingStandard.SliderLabeled(
-            //     "FA.typestatic.slider".Translate(Math.Round((decimal)Settings.Updatefrequency / 2500, 2)),
-            //     Settings.Updatefrequency, 100, 10000);
+            // Config.Updatefrequency = listingStandard.SliderLabeled(
+            //     "FA.typestatic.slider".Translate(Math.Round((decimal)Config.Updatefrequency / 2500, 2)),
+            //     Config.Updatefrequency, 100, 10000);
         }
 
         if (_currentVersion != null)

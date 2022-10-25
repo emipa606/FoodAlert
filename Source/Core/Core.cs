@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using FoodAlert.Data;
+using FoodAlert.Tools;
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
@@ -53,7 +56,7 @@ internal class Core
         harmony.Patch(AccessTools.Method(typeof(GlobalControlsUtility), nameof(GlobalControlsUtility.DoDate)), null,
             new HarmonyMethod(typeof(Core), nameof(ShouldUpdate)));
         // 初始化ModData
-        new ModData();
+        Tools.Debug.Log("Core");
     }
 
     /// <summary>
