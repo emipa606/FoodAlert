@@ -52,6 +52,8 @@ internal class Core
         Harmony harmony = new Harmony("mehni.rimworld.FoodAlert.main");
         harmony.Patch(AccessTools.Method(typeof(GlobalControlsUtility), nameof(GlobalControlsUtility.DoDate)), null,
             new HarmonyMethod(typeof(Core), nameof(ShouldUpdate)));
+        // 初始化ModData
+        new ModData();
     }
 
     /// <summary>

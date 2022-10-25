@@ -17,7 +17,7 @@ class ModData
     /// <summary>
     /// 初始化
     /// </summary>
-    ModData()
+    public ModData()
     {
         Config = Settings.Config;
     }

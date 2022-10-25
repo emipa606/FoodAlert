@@ -5,7 +5,7 @@ namespace FoodAlert.Config;
 /// <summary>
 /// mod设置
 /// </summary>
-class SettingConfig : ModSettings
+internal class SettingConfig : ModSettings
 {
     /// <summary>
     /// 优化更新频率
