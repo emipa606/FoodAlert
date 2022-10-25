@@ -2,7 +2,7 @@
 using UnityEngine;
 using Verse;
 
-namespace FoodAlert.Core;
+namespace FoodAlert.Setting;
 
 /// <summary>
 /// mod配置

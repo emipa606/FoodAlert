@@ -1,5 +1,6 @@
 ﻿using System;
 using FoodAlert.Config;
+using FoodAlert.Setting;
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
@@ -7,91 +8,141 @@ using Verse;
 
 namespace FoodAlert.Core;
 
+/// <summary>
+/// 启动类
+/// </summary>
 [StaticConstructorOnStartup]
 internal class HarmonyPatches
 {
-    private static float CachedNutrition;
+    /// <summary>
+    /// 当前食物数量
+    /// </summary>
+    private static float _cachedNutrition;
+
     private static float CachedNeed;
     private static int CachedHumans;
     private static int CachedDaysWorthOfFood;
-    private static int NextUpdateTick;
-    private static bool VanillaActive;
-    public static readonly bool IsSosLoaded;
 
+    /// <summary>
+    /// 优化更新频率的下一次更新时间
+    /// </summary>
+    private static int _nextUpdateTick = 0;
+
+    /// <summary>
+    /// 是否允许更新数据
+    /// </summary>
+    private static bool _vanillaActive;
+
+    /// <summary>
+    /// 判断Sos2的加载状态（未实装）
+    /// </summary>
+    public static readonly bool isSosLoaded;
+
+    /// <summary>
+    /// 启动Harmony
+    /// </summary>
     static HarmonyPatches()
     {
-        var harmony = new Harmony("mehni.rimworld.FoodAlert.main");
-        // IsSosLoaded = ModLister.GetActiveModWithIdentifier("kentington.saveourship2") != null;
+        Harmony harmony = new Harmony("mehni.rimworld.FoodAlert.main");
         harmony.Patch(AccessTools.Method(typeof(GlobalControlsUtility), nameof(GlobalControlsUtility.DoDate)), null,
             new HarmonyMethod(typeof(HarmonyPatches), nameof(FoodCounter_NearDatePostfix)));
     }
 
+    /// <summary>
+    /// 根据食物等级在可用存储区内统计食物数量
+    /// </summary>
+    /// <param name="map">当前地图</param>
+    /// <returns></returns>
     private static float GetEdibleStuff(Map map)
     {
-        var num = 0f;
-        var selectedPreferability = FoodAlertMod.Settings.foodPreferability;
-        var selectedPreferabilityEnum =
+        float num = 0f;
+        String selectedPreferability = FoodAlertMod.Settings.foodPreferability;
+        // 获取FoodPreferability枚举对象
+        FoodPreferability selectedPreferabilityEnum =
             (FoodPreferability)Enum.Parse(typeof(FoodPreferability), selectedPreferability);
+        // 在可用存储区内统计食物数量
         foreach (var keyValuePair in map.resourceCounter.AllCountedAmounts)
         {
+            // 物品数量小于或等于0
             if (keyValuePair.Value <= 0)
             {
                 continue;
             }
 
+            // 物品没有营养
             if (!keyValuePair.Key.IsNutritionGivingIngestible)
             {
                 continue;
             }
 
+            // 人类不能食用
             if (!keyValuePair.Key.ingestible.HumanEdible)
             {
                 continue;
             }
 
+            // 不符合食物等级
             if (selectedPreferabilityEnum > keyValuePair.Key.ingestible.preferability)
             {
                 continue;
             }
 
+            // 通过物品的营养价值乘以物品数量算出总营养价值
             num += keyValuePair.Key.GetStatValueAbstract(StatDefOf.Nutrition) * keyValuePair.Value;
         }
 
         return num;
     }
 
+    /// <summary>
+    /// 是否允许更新数据
+    /// </summary>
+    /// <returns></returns>
     private static bool ShouldUpdate()
     {
+        // 不使用优化更新频率
         if (!FoodAlertMod.Settings.dynamicupdate)
         {
+            // 游戏时间到达指定更新时间
             return Find.TickManager.TicksGame % FoodAlertMod.Settings.updatefrequency == 0;
         }
 
-        return NextUpdateTick == 0 || Find.TickManager.TicksGame >= NextUpdateTick;
+        // 优化更新频率等于0 或 游戏时间大于或等于优化更新频率指定的下一次更新时间
+        return _nextUpdateTick == 0 || Find.TickManager.TicksGame >= _nextUpdateTick;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="curBaseY"></param>
     private static void FoodCounter_NearDatePostfix(ref float curBaseY)
     {
+        // 允许更新数据
         if (ShouldUpdate())
         {
-            VanillaActive = false;
+            _vanillaActive = false;
+            // 获取当前的地图
             var map = Find.CurrentMap;
-            if (map == null ||
-                !map.IsPlayerHome && !IsSosLoaded ||
+            if (map == null || // 现在的地图不是null
+                !map.IsPlayerHome && !isSosLoaded || // 地图不是居住区且sos2没有加载
                 map.IsPlayerHome && map.mapPawns.AnyColonistSpawned &&
                 map.resourceCounter.TotalHumanEdibleNutrition <
-                4f * map.mapPawns.FreeColonistsSpawnedCount) //Vanilla low food alert condition)
+                4f * map.mapPawns.FreeColonistsSpawnedCount // 在玩家的居住区内且是殖民者地图且是人类可用的食物小于殖民者4天的消耗
+               ) // Vanilla low food alert condition
             {
+                // 允许优化更新频率
                 if (FoodAlertMod.Settings.dynamicupdate)
                 {
-                    NextUpdateTick = Find.TickManager.TicksGame + 400;
+                    // 以最高预设tick进行更新
+                    _nextUpdateTick = Find.TickManager.TicksGame + 400;
                 }
 
-                VanillaActive = true;
+                _vanillaActive = true;
                 return;
             }
 
-            CachedNutrition = GetEdibleStuff(map);
+            // 获取当前食物数量
+            _cachedNutrition = GetEdibleStuff(map);
             CachedNeed = 0f;
             var pawns = map.mapPawns.FreeColonistsAndPrisoners;
             foreach (var pawn in pawns)
@@ -111,11 +162,11 @@ internal class HarmonyPatches
                 CachedNeed = 0.0001f;
             }
 
-            var daysWorthActual = CachedNutrition / CachedNeed;
+            var daysWorthActual = _cachedNutrition / CachedNeed;
             if (FoodAlertMod.Settings.dynamicupdate)
             {
-                NextUpdateTick = Find.TickManager.TicksGame +
-                                 (int)Math.Round(Math.Min(Math.Max(daysWorthActual * 400, 100), 10000));
+                _nextUpdateTick = Find.TickManager.TicksGame +
+                                  (int)Math.Round(Math.Min(Math.Max(daysWorthActual * 400, 100), 10000));
                 //Log.Message(
                 //    $"Setting next update to {NextUpdateTick} ({NextUpdateTick - Find.TickManager.TicksGame} ticks)");
             }
@@ -123,7 +174,7 @@ internal class HarmonyPatches
             CachedDaysWorthOfFood = Mathf.FloorToInt(daysWorthActual);
         }
 
-        if (VanillaActive)
+        if (_vanillaActive)
         {
             return;
         }
@@ -207,7 +258,7 @@ internal class HarmonyPatches
 
         TooltipHandler.TipRegion(zlRect, new TipSignal(
             () => string.Format(foodText.Translate(),
-                CachedNutrition.ToString("F0"),
+                _cachedNutrition.ToString("F0"),
                 CachedHumans.ToStringCached(),
                 CachedNeed.ToString("F0"),
                 CachedDaysWorthOfFood.ToStringCached() + addendumForFlavour),
