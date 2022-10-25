@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using FoodAlert.Setting;
+using FoodAlert.Data;
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
@@ -62,7 +62,7 @@ internal class Core
     private static float GetEdibleStuff(Map map)
     {
         float num = 0f;
-        String selectedPreferability = FoodAlertMod.Settings.FoodPreferability;
+        String selectedPreferability = ModData.Config.FoodPreferability;
         // 获取FoodPreferability枚举对象
         FoodPreferability selectedPreferabilityEnum =
             (FoodPreferability)Enum.Parse(typeof(FoodPreferability), selectedPreferability);
@@ -107,10 +107,10 @@ internal class Core
     private static void ShouldUpdate(ref float curBaseY)
     {
         // 不使用优化更新频率
-        if (!FoodAlertMod.Settings.Dynamicupdate)
+        if (!ModData.Config.Dynamicupdate)
         {
             // 游戏时间到达指定更新时间
-            if (Find.TickManager.TicksGame % FoodAlertMod.Settings.Updatefrequency == 0)
+            if (Find.TickManager.TicksGame % ModData.Config.Updatefrequency == 0)
             {
                 UpdateData(ref curBaseY);
             }
@@ -164,7 +164,7 @@ internal class Core
         _cachedDaysWorthOfFood = _cachedNutrition / _cachedNeed;
 
 
-        if (FoodAlertMod.Settings.Dynamicupdate)
+        if (ModData.Config.Dynamicupdate)
         {
             // 根据食物优化更新频率
             _nextUpdateTick = Find.TickManager.TicksGame +
@@ -182,7 +182,7 @@ internal class Core
     private static void UpdateTab(ref float curBaseY)
     {
         // 食物等级
-        String selectedPreferability = FoodAlertMod.Settings.FoodPreferability;
+        String selectedPreferability = ModData.Config.FoodPreferability;
         // 食物等级枚举
         FoodPreferability selectedPreferabilityEnum =
             (FoodPreferability)Enum.Parse(typeof(FoodPreferability), selectedPreferability);

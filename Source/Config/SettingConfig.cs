@@ -1,11 +1,11 @@
 ﻿using Verse;
 
-namespace FoodAlert.Enums;
+namespace FoodAlert.Config;
 
 /// <summary>
 /// mod设置
 /// </summary>
-internal class FoodAlertSettings : ModSettings
+class SettingConfig : ModSettings
 {
     /// <summary>
     /// 优化更新频率

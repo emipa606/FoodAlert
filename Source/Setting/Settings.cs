@@ -1,5 +1,5 @@
 ﻿using System;
-using FoodAlert.Enums;
+using FoodAlert.Config;
 using UnityEngine;
 using Verse;
 
@@ -8,12 +8,12 @@ namespace FoodAlert.Setting;
 /// <summary>
 /// mod配置
 /// </summary>
-internal class FoodAlertMod : Mod
+internal class Settings : Mod
 {
     /// <summary>
     /// mod设置
     /// </summary>
-    public static FoodAlertSettings Settings;
+    public static SettingConfig Config;
 
     /// <summary>
     /// 当前版本
@@ -30,11 +30,10 @@ internal class FoodAlertMod : Mod
     /// 初始化
     /// </summary>
     /// <param name="content"></param>
-    public FoodAlertMod(ModContentPack content) : base(content)
+    public Settings(ModContentPack content) : base(content)
     {
-        Settings = GetSettings<FoodAlertSettings>();
-        // _currentVersion =
-        //     VersionFromManifest.GetVersionFromModMetaData(ModLister.GetActiveModWithIdentifier("Mlie.FoodAlert"));
+        Config = GetSettings<SettingConfig>();
+        // _currentVersion =ModLister.GetActiveModWithIdentifier("Mlie.FoodAlert");
     }
 
     /// <summary>
@@ -56,18 +55,18 @@ internal class FoodAlertMod : Mod
         listingStandard.Begin(inRect);
         foreach (var preference in Preference)
         {
-            if (listingStandard.RadioButton(preference, Settings.FoodPreferability == preference))
+            if (listingStandard.RadioButton(preference, Config.FoodPreferability == preference))
             {
-                Settings.FoodPreferability = preference;
+                Config.FoodPreferability = preference;
             }
         }
 
         listingStandard.Label("SettingExplanation".Translate());
         listingStandard.GapLine();
         listingStandard.Label("FA.updatetype.label".Translate());
-        listingStandard.CheckboxLabeled("FA.typedynamic.label".Translate(), ref Settings.Dynamicupdate,
+        listingStandard.CheckboxLabeled("FA.typedynamic.label".Translate(), ref Config.Dynamicupdate,
             "FA.typedynamic.description".Translate());
-        if (!Settings.Dynamicupdate)
+        if (!Config.Dynamicupdate)
         {
             // Settings.Updatefrequency = listingStandard.SliderLabeled(
             //     "FA.typestatic.slider".Translate(Math.Round((decimal)Settings.Updatefrequency / 2500, 2)),
@@ -84,6 +83,6 @@ internal class FoodAlertMod : Mod
 
         listingStandard.End();
 
-        Settings.Write();
+        Config.Write();
     }
 }
