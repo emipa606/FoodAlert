@@ -1,4 +1,5 @@
-﻿using FoodAlert.Config;
+﻿using System;
+using FoodAlert.Enums;
 using UnityEngine;
 using Verse;
 
@@ -68,9 +69,9 @@ internal class FoodAlertMod : Mod
             "FA.typedynamic.description".Translate());
         if (!Settings.Dynamicupdate)
         {
-            // Settings.updatefrequency = listingStandard.SliderLabeled(
-            //     "FA.typestatic.slider".Translate(Math.Round((decimal)Settings.updatefrequency / 2500, 2)),
-            //     Settings.updatefrequency, 100, 10000);
+            // Settings.Updatefrequency = listingStandard.SliderLabeled(
+            //     "FA.typestatic.slider".Translate(Math.Round((decimal)Settings.Updatefrequency / 2500, 2)),
+            //     Settings.Updatefrequency, 100, 10000);
         }
 
         if (_currentVersion != null)

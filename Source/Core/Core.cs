@@ -42,7 +42,7 @@ internal class Core
     /// <summary>
     /// 是否允许更新数据
     /// </summary>
-    private static bool _vanillaActive;
+    private static bool _vanillaActive = true;
 
     /// <summary>
     /// 判断Sos2的加载状态（未实装）
@@ -128,11 +128,20 @@ internal class Core
     /// <param name="curBaseY"></param>
     private static void UpdateData(ref float curBaseY)
     {
-        // 不允许更新数据或正在更新中
-        if (!ShouldUpdate() || !_vanillaActive)
+        // 不允许更新数据
+        if (!ShouldUpdate())
         {
             return;
         }
+
+        // 正在更新中
+        if (!_vanillaActive)
+        {
+            Tools.Debug.Log("UpdateData Return");
+            return;
+        }
+
+        Tools.Debug.Log("UpdateData _vanillaActive:" + _vanillaActive);
 
         _vanillaActive = false;
         // 获取当前的地图
@@ -152,7 +161,6 @@ internal class Core
 
             // 按照殖民者都能吃饱的情况下计算每天需要消耗的食物
             var pawnNeed = pawn.needs.food.FoodFallPerTickAssumingCategory(HungerCategory.Fed) * 60000f;
-            // 打印日志
             Tools.Debug.Log(string.Format("{0}每天消耗食物{1}，目前饥饿程度{2}", pawn.Name, pawnNeed,
                 pawn.needs.food.CurCategory));
             _cachedNeed += pawnNeed;
@@ -174,12 +182,11 @@ internal class Core
         {
             // 根据食物优化更新频率
             _nextUpdateTick = Find.TickManager.TicksGame +
-                              (int)Math.Round(Math.Min(_cachedDaysWorthOfFood * 200, 10000));
+                              (int)Math.Round(Math.Min(_cachedDaysWorthOfFood * 400, 10000));
         }
 
-        _vanillaActive = true;
-
         UpdateTab(ref curBaseY);
+        Tools.Debug.Log("UpdateData _vanillaActive:" + _vanillaActive);
     }
 
     /// <summary>
@@ -188,6 +195,7 @@ internal class Core
     /// <param name="curBaseY"></param>
     private static void UpdateTab(ref float curBaseY)
     {
+        Tools.Debug.Log("UpdateTab curBaseY:" + curBaseY);
         String selectedPreferability = FoodAlertMod.Settings.FoodPreferability;
         FoodPreferability selectedPreferabilityEnum =
             (FoodPreferability)Enum.Parse(typeof(FoodPreferability), selectedPreferability);
@@ -273,5 +281,7 @@ internal class Core
             76515));
 
         curBaseY -= zlRect.height;
+        _vanillaActive = true;
+        Tools.Debug.Log("UpdateTab End");
     }
 }

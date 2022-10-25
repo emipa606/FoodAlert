@@ -1,6 +1,6 @@
 ﻿using Verse;
 
-namespace FoodAlert.Config;
+namespace FoodAlert.Enums;
 
 /// <summary>
 /// mod设置
