@@ -19,4 +19,22 @@
   <FA.typedynamic.description>Met à jour la situation alimentaire en fonction du nombre de jours de nourriture disponibles. Plus il y a de jours de nourriture disponibles, moins l'infobulle sera mise à jour. Cela permet d'améliorer les performances dans les grandes colonies.</FA.typedynamic.description>
   <FA.typestatic.slider>Mise à jour toutes les {0} heures de jeu</FA.typestatic.slider>
   <FA.modversion>Version installée du module : {0}</FA.modversion>
+
+  <FA.updatetype.label.tip>游戏中默认60tick为1秒，请勿将此值设置过低（具体取决于游戏性能）</FA.updatetype.label.tip>
+  <DesperateOnly>任意的食物</DesperateOnly>
+  <DesperateOnlyForHumanlikes>绝望的食物</DesperateOnlyForHumanlikes>
+  <RawBad>原始的食物</RawBad>
+  <RawTasty>原始的美味</RawTasty>
+  <MealAwful>糟糕的饭菜</MealAwful>
+  <MealSimple>简单的饭菜</MealSimple>
+  <MealFine>精致的饭菜</MealFine>
+  <MealLavish>奢侈的饭菜</MealLavish>
+  <DesperateOnlyTip>所有食物</DesperateOnlyTip>
+  <DesperateOnlyForHumanlikesTip>受精卵，神奇动物肉</DesperateOnlyForHumanlikesTip>
+  <RawBadTip>粗粮，未受精卵</RawBadTip>
+  <RawTastyTip>牛奶，浆果</RawTastyTip>
+  <MealAwfulTip>营养膏</MealAwfulTip>
+  <MealSimpleTip>简单食物，干肉饼</MealSimpleTip>
+  <MealFineTip>精致食物，虫胶</MealFineTip>
+  <MealLavishTip>奢侈食物</MealLavishTip>
 </LanguageData>

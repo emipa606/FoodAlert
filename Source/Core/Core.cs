@@ -55,8 +55,8 @@ internal class Core
         Harmony harmony = new Harmony("mehni.rimworld.FoodAlert.main");
         harmony.Patch(AccessTools.Method(typeof(GlobalControlsUtility), nameof(GlobalControlsUtility.DoDate)), null,
             new HarmonyMethod(typeof(Core), nameof(ShouldUpdate)));
-        // 初始化ModData
-        Tools.Debug.Log("Core");
+        // 初始化modData
+        new ModData();
     }
 
     /// <summary>
@@ -117,13 +117,14 @@ internal class Core
             // 游戏时间到达指定更新时间
             if (Find.TickManager.TicksGame % ModData.Config.Updatefrequency == 0)
             {
+                Tools.Debug.Log($"未使用优化频率更新 : {Find.TickManager.TicksGame}");
                 UpdateData(ref curBaseY);
             }
         }
-
         // 优化更新频率等于0 或 游戏时间大于或等于优化更新频率指定的下一次更新时间
-        if (_nextUpdateTick == 0 || Find.TickManager.TicksGame >= _nextUpdateTick)
+        else if (_nextUpdateTick == 0 || Find.TickManager.TicksGame >= _nextUpdateTick)
         {
+            Tools.Debug.Log($"使用优化频率更新 : {Find.TickManager.TicksGame}");
             UpdateData(ref curBaseY);
         }
 
@@ -157,7 +158,7 @@ internal class Core
             _cachedNeed += pawnNeed;
         }
 
-        // 获取殖民者和囚犯每天获取的食物
+        // TODO 获取殖民者和囚犯每天获取的食物 我觉得有问题
         _cachedHumans = map.mapPawns.FreeColonistsAndPrisonersSpawnedCount;
         // 为没有食物消耗的单位添加默认消耗
         if (_cachedNeed == 0f)
@@ -168,16 +169,15 @@ internal class Core
         // 计算食物可供食用的天数
         _cachedDaysWorthOfFood = _cachedNutrition / _cachedNeed;
 
-
         if (ModData.Config.Dynamicupdate)
         {
             // 根据食物优化更新频率
             _nextUpdateTick = Find.TickManager.TicksGame +
-                              (int)Math.Round(Math.Min(_cachedDaysWorthOfFood * 400, 10000));
+                              (int)Math.Round(Math.Min(Math.Max(_cachedDaysWorthOfFood * 50, 100), 2000));
         }
 
         Tools.Debug.Log(
-            $"当前食物{_cachedNutrition.ToString("F1")} 食物获取{_cachedHumans.ToString("F1")} 每日消耗{_cachedNeed.ToString("F1")} 可用天数{_cachedDaysWorthOfFood.ToString("F1")}");
+            $"当前食物{_cachedNutrition.ToString("F1")} 食物获取{_cachedHumans.ToString("F1")} 每日消耗{_cachedNeed.ToString("F1")} 可用天数{_cachedDaysWorthOfFood.ToString("F1")} 当前更新频率:{ModData.Config.Updatefrequency}");
     }
 
     /// <summary>
@@ -192,8 +192,8 @@ internal class Core
         FoodPreferability selectedPreferabilityEnum =
             (FoodPreferability)Enum.Parse(typeof(FoodPreferability), selectedPreferability);
         // 食物偏好相关
-        string addendumForFlavour = "\n" + "SettingDescription".Translate() + ": " +
-                                    selectedPreferability;
+        string addendumForFlavour = "\n " + "SettingDescription".Translate() + ": " +
+                                    selectedPreferability.Translate();
         // 每日食物消耗
         string daysWorthOfHumanFood = $"{_cachedDaysWorthOfFood.ToString("F1")}" + "FoodAlert_DaysOfFood".Translate();
         // 根据食物可用天数判断
@@ -249,11 +249,11 @@ internal class Core
         GUI.BeginGroup(zlRect);
 
         // 可供食用天数小于等于3
-        if (_cachedDaysWorthOfFood <= 3)
+        if (_cachedDaysWorthOfFood <= 7)
         {
             GUI.color = Color.yellow;
             // 可供食用天数小于等于1
-            if (_cachedDaysWorthOfFood <= 1)
+            if (_cachedDaysWorthOfFood <= 3)
             {
                 GUI.color = Color.red;
             }
@@ -282,7 +282,7 @@ internal class Core
                 _cachedHumans.ToString("F1"),
                 _cachedNeed.ToString("F1"),
                 _cachedDaysWorthOfFood.ToString("F1") + addendumForFlavour),
-            76515));
+            765151));
 
         curBaseY -= zlRect.height;
     }
