@@ -12,13 +12,13 @@ internal class FoodAlertMod : Mod
     private static string currentVersion;
 
     private static readonly string[] preferabilities =
-        { "DesperateOnly", "RawBad", "RawTasty", "MealAwful", "MealSimple", "MealFine", "MealLavish" };
+        ["DesperateOnly", "RawBad", "RawTasty", "MealAwful", "MealSimple", "MealFine", "MealLavish"];
 
     public FoodAlertMod(ModContentPack content) : base(content)
     {
         settings = GetSettings<FoodAlertSettings>();
         currentVersion =
-            VersionFromManifest.GetVersionFromModMetaData(ModLister.GetActiveModWithIdentifier("Mlie.FoodAlert"));
+            VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
     }
 
     public override string SettingsCategory()
@@ -46,7 +46,7 @@ internal class FoodAlertMod : Mod
         if (!settings.dynamicupdate)
         {
             settings.updatefrequency = listing_Standard.SliderLabeled(
-                "FA.typestatic.slider".Translate(Math.Round((decimal)settings.updatefrequency / 2500, 2)),
+                "FA.typestatic.slider".Translate(Math.Round((decimal)settings.updatefrequency / 2500, 2).ToString()),
                 settings.updatefrequency, 100, 10000);
         }
 

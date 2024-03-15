@@ -79,7 +79,7 @@ internal class HarmonyPatches
                 !map.IsPlayerHome && !IsSosLoaded ||
                 map.IsPlayerHome && map.mapPawns.AnyColonistSpawned &&
                 map.resourceCounter.TotalHumanEdibleNutrition <
-                4f * map.mapPawns.FreeColonistsSpawnedCount) //Vanilla low food alert condition)
+                4f * map.mapPawns.FreeColonistsSpawnedCount) // Vanilla low food alert condition
             {
                 if (FoodAlertMod.settings.dynamicupdate)
                 {
@@ -156,8 +156,8 @@ internal class HarmonyPatches
 
             case >= 0:
 
-                /* there's food but since there's no vanilla alert active, probably we are counting food with an higher preferability
-                 * in any case, let's dispaly at least a poor food alert 
+                /* there's food but since there's no vanilla alert active, probably we are counting food with a higher preferability
+                 * in any case, let's dispaly at least a poor food alert
                  */
                 addendumForFlavour += "FoodAlert_Poor".Translate();
 
