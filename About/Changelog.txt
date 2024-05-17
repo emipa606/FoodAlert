@@ -1,5 +1,8 @@
 # Changelog for FoodAlert
 
+1.5.1 - Removed the chinese translation, will refer to [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3246861614]Food Alert_zh[/url] instead
+
+
 1.5.0 - Mod updated for 1.5 and passed autotests
 
 
