@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
@@ -29,9 +29,7 @@ internal class HarmonyPatches
     {
         var num = 0f;
         var selectedPreferability = FoodAlertMod.settings.foodPreferability;
-        var selectedPreferabilityEnum =
-            (FoodPreferability)Enum.Parse(typeof(FoodPreferability), selectedPreferability);
-        foreach (var keyValuePair in map.resourceCounter.AllCountedAmounts)
+                foreach (var keyValuePair in map.resourceCounter.AllCountedAmounts)
         {
             if (keyValuePair.Value <= 0)
             {
@@ -48,7 +46,7 @@ internal class HarmonyPatches
                 continue;
             }
 
-            if (selectedPreferabilityEnum > keyValuePair.Key.ingestible.preferability)
+			if (selectedPreferability > keyValuePair.Key.ingestible.preferability)
             {
                 continue;
             }
@@ -129,9 +127,7 @@ internal class HarmonyPatches
 
         var selectedPreferability = LoadedModManager.GetMod<FoodAlertMod>().GetSettings<FoodAlertSettings>()
             .foodPreferability;
-        var selectedPreferabilityEnum =
-            (FoodPreferability)Enum.Parse(typeof(FoodPreferability), selectedPreferability);
-
+        
         string addendumForFlavour = "\n    " + "SettingDescription".Translate() + ": " +
                                     selectedPreferability;
         string daysWorthOfHumanFood = $"{CachedDaysWorthOfFood}" + "FoodAlert_DaysOfFood".Translate();
@@ -161,7 +157,7 @@ internal class HarmonyPatches
                  */
                 addendumForFlavour += "FoodAlert_Poor".Translate();
 
-                if (selectedPreferabilityEnum > FoodPreferability.DesperateOnly)
+				if (selectedPreferability > FoodPreferability.DesperateOnly)
                 {
                     // and a warning that more food may be available
                     addendumForFlavour += "LowFoodAddendum".Translate();
