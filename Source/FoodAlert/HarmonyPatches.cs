@@ -25,38 +25,6 @@ internal class HarmonyPatches
             new HarmonyMethod(typeof(HarmonyPatches), nameof(FoodCounter_NearDatePostfix)));
     }
 
-    private static float GetEdibleStuff(Map map)
-    {
-        var num = 0f;
-        var selectedPreferability = FoodAlertMod.settings.foodPreferability;
-                foreach (var keyValuePair in map.resourceCounter.AllCountedAmounts)
-        {
-            if (keyValuePair.Value <= 0)
-            {
-                continue;
-            }
-
-            if (!keyValuePair.Key.IsNutritionGivingIngestible)
-            {
-                continue;
-            }
-
-            if (!keyValuePair.Key.ingestible.HumanEdible)
-            {
-                continue;
-            }
-
-			if (selectedPreferability > keyValuePair.Key.ingestible.preferability)
-            {
-                continue;
-            }
-
-            num += keyValuePair.Key.GetStatValueAbstract(StatDefOf.Nutrition) * keyValuePair.Value;
-        }
-
-        return num;
-    }
-
     private static bool ShouldUpdate()
     {
         if (!FoodAlertMod.settings.dynamicupdate)
@@ -88,7 +56,7 @@ internal class HarmonyPatches
                 return;
             }
 
-            CachedNutrition = GetEdibleStuff(map);
+			CachedNutrition = NutritionCounter.GetEdibleStuff(map);
             CachedNeed = 0f;
             var pawns = map.mapPawns.FreeColonistsAndPrisoners;
             foreach (var pawn in pawns)
