@@ -3,7 +3,7 @@ using RimWorld;
 
 namespace FoodAlert;
 
-internal class FoodAlertSettings : ModSettings
+public class FoodAlertSettings : ModSettings
 {
     public bool dynamicupdate = true;
     public FoodPreferability foodPreferability = FoodPreferability.RawBad;
