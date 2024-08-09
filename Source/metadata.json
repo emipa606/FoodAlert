@@ -3,5 +3,8 @@
   "CanAdd": "0",
   "CanRemove": "0",
   "PreviewVersion": "1.5",
-  "SkipLanguages": [	"ChineseSimplified"  ]
+  "SkipLanguages": [
+    "ChineseSimplified"
+  ],
+  "SocialImageSet": true
 }

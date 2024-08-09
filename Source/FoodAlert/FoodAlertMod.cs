@@ -1,8 +1,8 @@
 using System;
 using Mlie;
+using RimWorld;
 using UnityEngine;
 using Verse;
-using RimWorld;
 
 namespace FoodAlert;
 
@@ -13,9 +13,11 @@ public class FoodAlertMod : Mod
     private static string currentVersion;
 
     private static readonly FoodPreferability[] preferabilities =
-        [FoodPreferability.DesperateOnly, FoodPreferability.RawBad, FoodPreferability.RawTasty,
+    [
+        FoodPreferability.DesperateOnly, FoodPreferability.RawBad, FoodPreferability.RawTasty,
         FoodPreferability.MealAwful, FoodPreferability.MealSimple, FoodPreferability.MealFine,
-        FoodPreferability.MealLavish];
+        FoodPreferability.MealLavish
+    ];
 
     public FoodAlertMod(ModContentPack content) : base(content)
     {

@@ -1,25 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputPath>..\..\..\Mods\VENutrientPaste\1.5\Assemblies</OutputPath>
+    <OutputPath>..\..\..\Mods\1.5\VENutrientPaste\Assemblies</OutputPath>
     <TargetFramework>net48</TargetFramework>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <DebugType>None</DebugType>
     <LangVersion>latest</LangVersion>
-    <FileVersion>1.5.0</FileVersion>
+    <FileVersion>1.5.2</FileVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>1.5.4034-beta</Version>
+      <Version>*</Version>
       <ExcludeAssets>runtime</ExcludeAssets>
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Lib.Harmony">
-      <Version>*</Version>
-      <ExcludeAssets>runtime</ExcludeAssets>
-    </PackageReference>
     <Reference Include="PipeSystem">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\workshop\content\294100\2023507013\1.5\Assemblies\PipeSystem.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2023507013\1.5\Assemblies\PipeSystem.dll</HintPath>
       <CopyLocal>False</CopyLocal>
       <Private>False</Private>
     </Reference>
@@ -28,4 +24,7 @@
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
+	<Target Name="DeleteFiles" AfterTargets="Build">
+		<Delete Files="$(OutDir)VersionFromManifest.dll" />
+	</Target>
 </Project>

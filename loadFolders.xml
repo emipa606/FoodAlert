@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <loadFolders>
   <v1.0>
     <li>/</li>
@@ -23,6 +23,6 @@
   <v1.5>
     <li>/</li>
     <li>1.5</li>
-	<li IfModActive="vanillaexpanded.vnutriente">Mods/VENutrientPaste/1.5</li>
+    <li IfModActive="vanillaexpanded.vnutriente">Mods/1.5/VENutrientPaste</li>
   </v1.5>
 </loadFolders>

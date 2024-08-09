@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <SomeFood>Nahrungsvorräte</SomeFood>
   <SomeFoodDesc>Es ist ausreichend Nahrung vorhanden.\n\n    Nahrung im Wert voller Leisten: {0}\n    Personen die Nahrung erhalten: {1}\n    Tage für die Nahrung gelagert ist: {2}</SomeFoodDesc>

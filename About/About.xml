@@ -38,6 +38,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1114619043
 - Spanish translation by Ferchu
 - German translation by thephluxer
 - Food calculations should now be done more seldom when there is a lot of food. There is a slider for setting a static update-value if needed.
+- For Chinese tranlsation, use [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3246861614]Food Alert_zh[/url] by  摄魂狼
 
 [img]https://i.imgur.com/pufA0kM.png[/img]
 
@@ -78,5 +79,5 @@ Russian: Alex_1203
 [/list]
 
 [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/2017538067][img]https://img.shields.io/github/v/release/emipa606/FoodAlert?label=latest%20version&amp;style=plastic&amp;color=9f1111&amp;labelColor=black[/img][/url]</description>
-  <modVersion IgnoreIfNoMatchingField="True">1.5.1</modVersion>
+  <modVersion IgnoreIfNoMatchingField="True">1.5.2</modVersion>
 </ModMetaData>

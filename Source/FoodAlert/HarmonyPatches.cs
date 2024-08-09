@@ -56,7 +56,7 @@ internal class HarmonyPatches
                 return;
             }
 
-			CachedNutrition = NutritionCounter.GetEdibleStuff(map);
+            CachedNutrition = NutritionCounter.GetEdibleStuff(map);
             CachedNeed = 0f;
             var pawns = map.mapPawns.FreeColonistsAndPrisoners;
             foreach (var pawn in pawns)
@@ -81,8 +81,6 @@ internal class HarmonyPatches
             {
                 NextUpdateTick = Find.TickManager.TicksGame +
                                  (int)Math.Round(Math.Min(Math.Max(daysWorthActual * 400, 100), 10000));
-                //Log.Message(
-                //    $"Setting next update to {NextUpdateTick} ({NextUpdateTick - Find.TickManager.TicksGame} ticks)");
             }
 
             CachedDaysWorthOfFood = Mathf.FloorToInt(daysWorthActual);
@@ -95,9 +93,9 @@ internal class HarmonyPatches
 
         var selectedPreferability = LoadedModManager.GetMod<FoodAlertMod>().GetSettings<FoodAlertSettings>()
             .foodPreferability;
-        
-        string addendumForFlavour = "\n    " + "SettingDescription".Translate() + ": " +
-                                    selectedPreferability;
+
+        var addendumForFlavour = "\n    " + "SettingDescription".Translate() + ": " +
+                                 selectedPreferability;
         string daysWorthOfHumanFood = $"{CachedDaysWorthOfFood}" + "FoodAlert_DaysOfFood".Translate();
 
         switch (CachedDaysWorthOfFood)
@@ -125,7 +123,7 @@ internal class HarmonyPatches
                  */
                 addendumForFlavour += "FoodAlert_Poor".Translate();
 
-				if (selectedPreferability > FoodPreferability.DesperateOnly)
+                if (selectedPreferability > FoodPreferability.DesperateOnly)
                 {
                     // and a warning that more food may be available
                     addendumForFlavour += "LowFoodAddendum".Translate();

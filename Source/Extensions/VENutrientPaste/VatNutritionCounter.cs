@@ -1,4 +1,5 @@
 using System.Linq;
+using PipeSystem;
 using RimWorld;
 using Verse;
 
@@ -20,11 +21,9 @@ public class VatNutritionCounter
         {
             return 0;
         }
-        var mealCount = map?.GetComponent<PipeSystem.PipeNetManager>()
-            ?.pipeNets
-            ?.Where(pn => pn.def.defName == "VNPE_NutrientPasteNet")
-            ?.Sum(pn => pn.CurrentStored())
-            ?? 0;
+
+        var mealCount = map?.GetComponent<PipeNetManager>()?.pipeNets
+            ?.Where(pn => pn.def.defName == "VNPE_NutrientPasteNet").Sum(pn => pn.CurrentStored()) ?? 0;
         var nutPerMeal = mealDef.GetStatValueAbstract(StatDefOf.Nutrition);
         return mealCount * nutPerMeal;
     }

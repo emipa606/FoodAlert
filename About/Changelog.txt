@@ -1,5 +1,8 @@
 # Changelog for FoodAlert
 
+1.5.2 - Added support for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2920385763]Vanilla Nutrient Paste Expanded[/url], thanks malnormalulo!
+
+
 1.5.1 - Removed the chinese translation, will refer to [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3246861614]Food Alert_zh[/url] instead
 
 

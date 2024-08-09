@@ -1,6 +1,7 @@
 # [Food Alert (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2017538067)
 
 ![Image](https://i.imgur.com/buuPQel.png)
+
 Update of Mehnis mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=1114619043
 
@@ -10,11 +11,12 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1114619043
 - Changed the calculations for food, instead using the exact amount the pawns require
 	This should make the mod show more correct values and also ignore pawns that do not eat
 - Russian translation fixed by Morbo
-- Added compatibility with [https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131](SOS2)
+- Added compatibility with [SOS2](https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131)
 - Italian translation by arl85
 - Spanish translation by Ferchu
 - German translation by thephluxer
 - Food calculations should now be done more seldom when there is a lot of food. There is a slider for setting a static update-value if needed.
+- For Chinese tranlsation, use [Food Alert_zh](https://steamcommunity.com/sharedfiles/filedetails/?id=3246861614) by  摄魂狼
 
 ![Image](https://i.imgur.com/pufA0kM.png)
 	
@@ -36,14 +38,15 @@ Russian: Alex_1203
 ![Image](https://i.imgur.com/PwoNOj4.png)
 
 
+
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using [https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib[/url] or the standalone [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404](Uploader) and command Ctrl+F12
+-  Post your error-log using [HugsLib](https://steamcommunity.com/workshop/filedetails/?id=818773962) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
--  Use [https://github.com/RimSort/RimSort/releases/latest](RimSort) to sort your mods
+-  Use [RimSort](https://github.com/RimSort/RimSort/releases/latest) to sort your mods
 
 
 
-[https://steamcommunity.com/sharedfiles/filedetails/changelog/2017538067]![Image]((https://img.shields.io/github/v/release/emipa606/FoodAlert?label=latest%20version&style=plastic&color=9f1111&labelColor=black))
+[![Image](https://img.shields.io/github/v/release/emipa606/FoodAlert?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2017538067)
