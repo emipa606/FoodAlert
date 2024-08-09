@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
@@ -23,40 +23,6 @@ internal class HarmonyPatches
         IsSosLoaded = ModLister.GetActiveModWithIdentifier("kentington.saveourship2") != null;
         harmony.Patch(AccessTools.Method(typeof(GlobalControlsUtility), nameof(GlobalControlsUtility.DoDate)), null,
             new HarmonyMethod(typeof(HarmonyPatches), nameof(FoodCounter_NearDatePostfix)));
-    }
-
-    private static float GetEdibleStuff(Map map)
-    {
-        var num = 0f;
-        var selectedPreferability = FoodAlertMod.settings.foodPreferability;
-        var selectedPreferabilityEnum =
-            (FoodPreferability)Enum.Parse(typeof(FoodPreferability), selectedPreferability);
-        foreach (var keyValuePair in map.resourceCounter.AllCountedAmounts)
-        {
-            if (keyValuePair.Value <= 0)
-            {
-                continue;
-            }
-
-            if (!keyValuePair.Key.IsNutritionGivingIngestible)
-            {
-                continue;
-            }
-
-            if (!keyValuePair.Key.ingestible.HumanEdible)
-            {
-                continue;
-            }
-
-            if (selectedPreferabilityEnum > keyValuePair.Key.ingestible.preferability)
-            {
-                continue;
-            }
-
-            num += keyValuePair.Key.GetStatValueAbstract(StatDefOf.Nutrition) * keyValuePair.Value;
-        }
-
-        return num;
     }
 
     private static bool ShouldUpdate()
@@ -90,7 +56,7 @@ internal class HarmonyPatches
                 return;
             }
 
-            CachedNutrition = GetEdibleStuff(map);
+			CachedNutrition = NutritionCounter.GetEdibleStuff(map);
             CachedNeed = 0f;
             var pawns = map.mapPawns.FreeColonistsAndPrisoners;
             foreach (var pawn in pawns)
@@ -129,9 +95,7 @@ internal class HarmonyPatches
 
         var selectedPreferability = LoadedModManager.GetMod<FoodAlertMod>().GetSettings<FoodAlertSettings>()
             .foodPreferability;
-        var selectedPreferabilityEnum =
-            (FoodPreferability)Enum.Parse(typeof(FoodPreferability), selectedPreferability);
-
+        
         string addendumForFlavour = "\n    " + "SettingDescription".Translate() + ": " +
                                     selectedPreferability;
         string daysWorthOfHumanFood = $"{CachedDaysWorthOfFood}" + "FoodAlert_DaysOfFood".Translate();
@@ -161,7 +125,7 @@ internal class HarmonyPatches
                  */
                 addendumForFlavour += "FoodAlert_Poor".Translate();
 
-                if (selectedPreferabilityEnum > FoodPreferability.DesperateOnly)
+				if (selectedPreferability > FoodPreferability.DesperateOnly)
                 {
                     // and a warning that more food may be available
                     addendumForFlavour += "LowFoodAddendum".Translate();

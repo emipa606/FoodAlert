@@ -1,18 +1,21 @@
-﻿using System;
+using System;
 using Mlie;
 using UnityEngine;
 using Verse;
+using RimWorld;
 
 namespace FoodAlert;
 
-internal class FoodAlertMod : Mod
+public class FoodAlertMod : Mod
 {
     public static FoodAlertSettings settings;
 
     private static string currentVersion;
 
-    private static readonly string[] preferabilities =
-        ["DesperateOnly", "RawBad", "RawTasty", "MealAwful", "MealSimple", "MealFine", "MealLavish"];
+    private static readonly FoodPreferability[] preferabilities =
+        [FoodPreferability.DesperateOnly, FoodPreferability.RawBad, FoodPreferability.RawTasty,
+        FoodPreferability.MealAwful, FoodPreferability.MealSimple, FoodPreferability.MealFine,
+        FoodPreferability.MealLavish];
 
     public FoodAlertMod(ModContentPack content) : base(content)
     {
@@ -32,7 +35,8 @@ internal class FoodAlertMod : Mod
         listing_Standard.Begin(inRect);
         foreach (var preferability in preferabilities)
         {
-            if (listing_Standard.RadioButton(preferability, settings.foodPreferability == preferability))
+            var prefName = Enum.GetName(typeof(FoodPreferability), preferability);
+            if (listing_Standard.RadioButton(prefName, settings.foodPreferability == preferability))
             {
                 settings.foodPreferability = preferability;
             }
