@@ -5,18 +5,23 @@
 Update of Mehnis mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=1114619043
 
-- Added a setting for selecting the lowest preferability of food to be counted
+
+
+-  Added a setting for selecting the lowest preferability of food to be counted
 	DesperateOnly,RawBad,RawTasty,MealAwful,MealSimple,MealFine,MealLavish
 	Examples for each category shows in the config-dialog
-- Changed the calculations for food, instead using the exact amount the pawns require
+-  Changed the calculations for food, instead using the exact amount the pawns require
 	This should make the mod show more correct values and also ignore pawns that do not eat
-- Russian translation fixed by Morbo
-- Added compatibility with [SOS2](https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131)
-- Italian translation by arl85
-- Spanish translation by Ferchu
-- German translation by thephluxer
-- Food calculations should now be done more seldom when there is a lot of food. There is a slider for setting a static update-value if needed.
-- For Chinese tranlsation, use [Food Alert_zh](https://steamcommunity.com/sharedfiles/filedetails/?id=3246861614) by  摄魂狼
+-  Russian translation fixed by Morbo
+-  Added compatibility with [SOS2](https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131)
+-  Italian translation by arl85
+-  Spanish translation by Ferchu
+-  German translation by thephluxer
+-  Food calculations should now be done more seldom when there is a lot of food. There is a slider for setting a static update-value if needed.
+-  For Chinese tranlsation, use [Food Alert_zh](https://steamcommunity.com/sharedfiles/filedetails/?id=3246861614) by  摄魂狼
+-  Added support for [Vanilla Nutrient Paste Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=2920385763), thanks to malnormalulo!
+
+
 
 ![Image](https://i.imgur.com/pufA0kM.png)
 	

@@ -27,18 +27,21 @@
 Update of Mehnis mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=1114619043
 
-- Added a setting for selecting the lowest preferability of food to be counted
+[list]
+[*] Added a setting for selecting the lowest preferability of food to be counted
 	DesperateOnly,RawBad,RawTasty,MealAwful,MealSimple,MealFine,MealLavish
 	Examples for each category shows in the config-dialog
-- Changed the calculations for food, instead using the exact amount the pawns require
+[*] Changed the calculations for food, instead using the exact amount the pawns require
 	This should make the mod show more correct values and also ignore pawns that do not eat
-- Russian translation fixed by Morbo
-- Added compatibility with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131]SOS2[/url]
-- Italian translation by arl85
-- Spanish translation by Ferchu
-- German translation by thephluxer
-- Food calculations should now be done more seldom when there is a lot of food. There is a slider for setting a static update-value if needed.
-- For Chinese tranlsation, use [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3246861614]Food Alert_zh[/url] by  摄魂狼
+[*] Russian translation fixed by Morbo
+[*] Added compatibility with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131]SOS2[/url]
+[*] Italian translation by arl85
+[*] Spanish translation by Ferchu
+[*] German translation by thephluxer
+[*] Food calculations should now be done more seldom when there is a lot of food. There is a slider for setting a static update-value if needed.
+[*] For Chinese tranlsation, use [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3246861614]Food Alert_zh[/url] by  摄魂狼
+[*] Added support for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2920385763]Vanilla Nutrient Paste Expanded[/url], thanks to malnormalulo!
+[/list]
 
 [img]https://i.imgur.com/pufA0kM.png[/img]
 
@@ -79,5 +82,5 @@ Russian: Alex_1203
 [/list]
 
 [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/2017538067][img]https://img.shields.io/github/v/release/emipa606/FoodAlert?label=latest%20version&amp;style=plastic&amp;color=9f1111&amp;labelColor=black[/img][/url]</description>
-  <modVersion IgnoreIfNoMatchingField="True">1.5.2</modVersion>
+  <modVersion IgnoreIfNoMatchingField="True">1.5.3</modVersion>
 </ModMetaData>
