@@ -14,6 +14,11 @@
   <FoodAlert_Poor>\n\nЭто плохое количество еды.</FoodAlert_Poor>
   <SettingDescription>Предпочтительность продуктов питания</SettingDescription>
   <SettingExplanation>\nПримеры\n\n\nDesperateOnly: оплодотворенные яйца, амброзия\nRawBad: киббл, неоплодотворенные яйца\nRawTasty: молоко, ягоды\nMealAwful: питательная пастообразная еда\nMealSimple: простая еда, пеммикан\nMealFine: изысканная еда, желе насекомых\nMealLavish: пышная еда</SettingExplanation>
+  <EstimateIngredients.label>Исходя из ингредиентов</EstimateIngredients.label>
+  <EstimateIngredients.none>Нет</EstimateIngredients.none>
+  <EstimateIngredients.auto>Автоматический (ужасный x3, простой x1.8, прекрасный x1.8, роскошный x1)</EstimateIngredients.auto>
+  <EstimateIngredients.custom>Заказной</EstimateIngredients.custom>
+  <EstimateIngredients.slider>Соотношение ингредиентов и блюд: x{0}</EstimateIngredients.slider>
   <FA.updatetype.label>Частота обновления</FA.updatetype.label>
   <FA.typedynamic.label>Динамический</FA.typedynamic.label>
   <FA.typedynamic.description>Обновляет ситуацию с едой в зависимости от количества доступных дней. Чем больше дней доступно пищи, тем реже будет обновляться всплывающая подсказка. Это сделано для улучшения производительности в больших колониях.</FA.typedynamic.description>

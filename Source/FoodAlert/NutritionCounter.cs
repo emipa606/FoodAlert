@@ -18,6 +18,19 @@ public class NutritionCounter
             {
                 var num = 0f;
                 var selectedPreferability = FoodAlertMod.settings.foodPreferability;
+                var estimateIngredients = selectedPreferability >= FoodPreferability.MealAwful
+                    ? FoodAlertMod.settings.estimateIngredients : 0f;
+                if( estimateIngredients < 0 )
+                {
+                    estimateIngredients = selectedPreferability switch
+                    {
+                        FoodPreferability.MealAwful => 3f,
+                        FoodPreferability.MealSimple => 1.8f,
+                        FoodPreferability.MealFine => 1.8f, // normal fine meal (vege/meat need custom)
+                        FoodPreferability.MealLavish => 1f,
+                        _ => 0f
+                    };
+                }
                 foreach (var keyValuePair in map.resourceCounter.AllCountedAmounts)
                 {
                     if (keyValuePair.Value <= 0)
@@ -37,6 +50,15 @@ public class NutritionCounter
 
                     if (selectedPreferability > keyValuePair.Key.ingestible.preferability)
                     {
+                        // If configured, try to guess if it is usable as a cooking ingredient
+                        // and estimate how much food of the preferred type can be made from it.
+                        if (estimateIngredients > 0
+                            && keyValuePair.Key.ingestible.preferability < FoodPreferability.MealAwful
+                            && (keyValuePair.Key.ingestible.foodType & FoodTypeFlags.OmnivoreHuman) != 0)
+                        {
+                            num += keyValuePair.Key.GetStatValueAbstract(StatDefOf.Nutrition)
+                                * keyValuePair.Value * estimateIngredients;
+                        }
                         continue;
                     }
 
