@@ -6,7 +6,7 @@
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <DebugType>None</DebugType>
     <LangVersion>latest</LangVersion>
-    <FileVersion>1.5.2</FileVersion>
+    <FileVersion>1.5.4</FileVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
@@ -24,7 +24,7 @@
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
-	<Target Name="DeleteFiles" AfterTargets="Build">
-		<Delete Files="$(OutDir)VersionFromManifest.dll" />
-	</Target>
+  <Target Name="DeleteFiles" AfterTargets="Build">
+    <Delete Files="$(OutDir)VersionFromManifest.dll" />
+  </Target>
 </Project>

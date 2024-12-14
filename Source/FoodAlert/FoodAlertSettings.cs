@@ -6,8 +6,8 @@ namespace FoodAlert;
 public class FoodAlertSettings : ModSettings
 {
     public bool dynamicupdate = true;
-    public FoodPreferability foodPreferability = FoodPreferability.RawBad;
     public float estimateIngredients = -1; // 0 = disabled, <0 auto, >0 = custom
+    public FoodPreferability foodPreferability = FoodPreferability.RawBad;
     public float updatefrequency = 400;
 
     public override void ExposeData()

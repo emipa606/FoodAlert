@@ -19,8 +19,9 @@ public class NutritionCounter
                 var num = 0f;
                 var selectedPreferability = FoodAlertMod.settings.foodPreferability;
                 var estimateIngredients = selectedPreferability >= FoodPreferability.MealAwful
-                    ? FoodAlertMod.settings.estimateIngredients : 0f;
-                if( estimateIngredients < 0 )
+                    ? FoodAlertMod.settings.estimateIngredients
+                    : 0f;
+                if (estimateIngredients < 0)
                 {
                     estimateIngredients = selectedPreferability switch
                     {
@@ -31,6 +32,7 @@ public class NutritionCounter
                         _ => 0f
                     };
                 }
+
                 foreach (var keyValuePair in map.resourceCounter.AllCountedAmounts)
                 {
                     if (keyValuePair.Value <= 0)
@@ -57,8 +59,9 @@ public class NutritionCounter
                             && (keyValuePair.Key.ingestible.foodType & FoodTypeFlags.OmnivoreHuman) != 0)
                         {
                             num += keyValuePair.Key.GetStatValueAbstract(StatDefOf.Nutrition)
-                                * keyValuePair.Value * estimateIngredients;
+                                   * keyValuePair.Value * estimateIngredients;
                         }
+
                         continue;
                     }
 

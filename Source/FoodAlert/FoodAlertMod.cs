@@ -50,14 +50,24 @@ public class FoodAlertMod : Mod
         {
             listing_Standard.Label("EstimateIngredients.label".Translate());
             if (listing_Standard.RadioButton("EstimateIngredients.none".Translate(), settings.estimateIngredients == 0))
+            {
                 settings.estimateIngredients = 0;
+            }
+
             if (listing_Standard.RadioButton("EstimateIngredients.auto".Translate(), settings.estimateIngredients < 0))
+            {
                 settings.estimateIngredients = -1;
-            if (listing_Standard.RadioButton("EstimateIngredients.custom".Translate(), settings.estimateIngredients > 0))
+            }
+
+            if (listing_Standard.RadioButton("EstimateIngredients.custom".Translate(),
+                    settings.estimateIngredients > 0))
             {
                 if (settings.estimateIngredients <= 0)
+                {
                     settings.estimateIngredients = 1;
+                }
             }
+
             if (settings.estimateIngredients > 0)
             {
                 settings.estimateIngredients = listing_Standard.SliderLabeled(
@@ -65,6 +75,7 @@ public class FoodAlertMod : Mod
                     settings.estimateIngredients, 0.1f, 10f);
             }
         }
+
         listing_Standard.GapLine();
         listing_Standard.Label("FA.updatetype.label".Translate());
         listing_Standard.CheckboxLabeled("FA.typedynamic.label".Translate(), ref settings.dynamicupdate,
