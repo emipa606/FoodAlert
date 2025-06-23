@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputPath>..\..\1.5\Assemblies</OutputPath>
+    <OutputPath>..\..\..\Mods\1.5\VENutrientPaste\Assemblies</OutputPath>
     <TargetFramework>net481</TargetFramework>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
@@ -14,10 +14,17 @@
       <ExcludeAssets>runtime</ExcludeAssets>
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Lib.Harmony">
-      <Version>*</Version>
-      <ExcludeAssets>runtime</ExcludeAssets>
-    </PackageReference>
-    <PackageReference Include="Mlie_Rimworld_VersionFromManifest" Version="*" />
+    <Reference Include="PipeSystem">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2023507013\1.5\Assemblies\PipeSystem.dll</HintPath>
+      <CopyLocal>False</CopyLocal>
+      <Private>False</Private>
+    </Reference>
+    <ProjectReference Include="..\..\FoodAlert\FoodAlert.csproj">
+      <CopyLocal>False</CopyLocal>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
+  <Target Name="DeleteFiles" AfterTargets="Build">
+    <Delete Files="$(OutDir)VersionFromManifest.dll" />
+  </Target>
 </Project>

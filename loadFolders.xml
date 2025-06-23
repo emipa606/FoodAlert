@@ -25,4 +25,9 @@
     <li>1.5</li>
     <li IfModActive="vanillaexpanded.vnutriente">Mods/1.5/VENutrientPaste</li>
   </v1.5>
+  <v1.6>
+    <li>/</li>
+    <li>1.6</li>
+    <li IfModActive="vanillaexpanded.vnutriente">Mods/1.6/VENutrientPaste</li>
+  </v1.6>
 </loadFolders>

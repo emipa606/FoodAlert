@@ -12,6 +12,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1114619043
 	Examples for each category shows in the config-dialog
 -  Changed the calculations for food, instead using the exact amount the pawns require
 	This should make the mod show more correct values and also ignore pawns that do not eat
+-  Added setting to include ingredients for making meals when calculating meal-amount, thanks to llunak!
 -  Russian translation fixed by Morbo
 -  Added compatibility with [SOS2](https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131)
 -  Italian translation by arl85

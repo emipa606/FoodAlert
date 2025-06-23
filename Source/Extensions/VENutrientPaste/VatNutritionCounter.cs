@@ -10,14 +10,14 @@ public class VatNutritionCounter
 {
     static VatNutritionCounter()
     {
-        NutritionCounter.NutritionFinders["FoodAlert.Extensions.VENutrientPaste"] = CountNutrition;
+        NutritionCounter.NutritionFinders["FoodAlert.Extensions.VENutrientPaste"] = countNutrition;
     }
 
-    public static float CountNutrition(Map map)
+    private static float countNutrition(Map map)
     {
         var mealDef = ThingDefOf.MealNutrientPaste;
         var mealPreferability = mealDef.ingestible.preferability;
-        if (FoodAlertMod.settings.foodPreferability > mealPreferability)
+        if (FoodAlertMod.Settings.FoodPreferability > mealPreferability)
         {
             return 0;
         }

@@ -1,19 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputPath>..\..\..\Mods\1.5\VENutrientPaste\Assemblies</OutputPath>
+    <OutputPath>..\..\..\Mods\1.6\VENutrientPaste\Assemblies</OutputPath>
     <TargetFramework>net48</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <DebugType>None</DebugType>
     <LangVersion>latest</LangVersion>
-    <FileVersion>1.5.4</FileVersion>
+    <FileVersion>1.6.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>*</Version>
+      <Version>1.6.4498-beta</Version>
       <ExcludeAssets>runtime</ExcludeAssets>
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Mlie_Rimworld_VersionFromManifest" Version="*" />
     <Reference Include="PipeSystem">
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2023507013\1.5\Assemblies\PipeSystem.dll</HintPath>
       <CopyLocal>False</CopyLocal>
@@ -24,7 +26,4 @@
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
-  <Target Name="DeleteFiles" AfterTargets="Build">
-    <Delete Files="$(OutDir)VersionFromManifest.dll" />
-  </Target>
 </Project>

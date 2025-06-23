@@ -2,10 +2,11 @@
   "Continued": true,
   "CanAdd": "0",
   "CanRemove": "0",
-  "PreviewVersion": "1.5",
+  "PreviewVersion": "1.6",
   "SkipLanguages": [
     "ChineseSimplified"
   ],
   "SocialImageSet": true,
-  "SearchTags": " supplies"
+  "SearchTags": " supplies",
+  "LastXmlCleaning": "2025-06-23T22:37:17.0240733+02:00"
 }

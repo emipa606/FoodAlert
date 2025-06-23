@@ -15,21 +15,21 @@ internal class HarmonyPatches
     private static int CachedDaysWorthOfFood;
     private static int NextUpdateTick;
     private static bool VanillaActive;
-    public static readonly bool IsSosLoaded;
+    private static readonly bool IsSosLoaded;
 
     static HarmonyPatches()
     {
         var harmony = new Harmony("mehni.rimworld.FoodAlert.main");
-        IsSosLoaded = ModLister.GetActiveModWithIdentifier("kentington.saveourship2") != null;
+        IsSosLoaded = ModLister.GetActiveModWithIdentifier("kentington.saveourship2", true) != null;
         harmony.Patch(AccessTools.Method(typeof(GlobalControlsUtility), nameof(GlobalControlsUtility.DoDate)), null,
             new HarmonyMethod(typeof(HarmonyPatches), nameof(FoodCounter_NearDatePostfix)));
     }
 
-    private static bool ShouldUpdate()
+    private static bool shouldUpdate()
     {
-        if (!FoodAlertMod.settings.dynamicupdate)
+        if (!FoodAlertMod.Settings.DynamicUpdate)
         {
-            return Find.TickManager.TicksGame % FoodAlertMod.settings.updatefrequency == 0;
+            return Find.TickManager.TicksGame % FoodAlertMod.Settings.UpdateFrequency == 0;
         }
 
         return NextUpdateTick == 0 || Find.TickManager.TicksGame >= NextUpdateTick;
@@ -37,7 +37,7 @@ internal class HarmonyPatches
 
     private static void FoodCounter_NearDatePostfix(ref float curBaseY)
     {
-        if (ShouldUpdate())
+        if (shouldUpdate())
         {
             VanillaActive = false;
             var map = Find.CurrentMap;
@@ -47,7 +47,7 @@ internal class HarmonyPatches
                 map.resourceCounter.TotalHumanEdibleNutrition <
                 4f * map.mapPawns.FreeColonistsSpawnedCount) // Vanilla low food alert condition
             {
-                if (FoodAlertMod.settings.dynamicupdate)
+                if (FoodAlertMod.Settings.DynamicUpdate)
                 {
                     NextUpdateTick = Find.TickManager.TicksGame + 400;
                 }
@@ -77,7 +77,7 @@ internal class HarmonyPatches
             }
 
             var daysWorthActual = CachedNutrition / CachedNeed;
-            if (FoodAlertMod.settings.dynamicupdate)
+            if (FoodAlertMod.Settings.DynamicUpdate)
             {
                 NextUpdateTick = Find.TickManager.TicksGame +
                                  (int)Math.Round(Math.Min(Math.Max(daysWorthActual * 400, 100), 10000));
@@ -92,7 +92,7 @@ internal class HarmonyPatches
         }
 
         var selectedPreferability = LoadedModManager.GetMod<FoodAlertMod>().GetSettings<FoodAlertSettings>()
-            .foodPreferability;
+            .FoodPreferability;
 
         var addendumForFlavour = "\n    " + "SettingDescription".Translate() + ": " +
                                  selectedPreferability;
@@ -134,7 +134,7 @@ internal class HarmonyPatches
                 return;
         }
 
-        var rightMargin = 7f;
+        const float rightMargin = 7f;
         var zlRect = new Rect(UI.screenWidth - Alert.Width, curBaseY - 24f, Alert.Width, 24f);
         Text.Font = GameFont.Small;
 

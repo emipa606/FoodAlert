@@ -8,7 +8,7 @@ namespace FoodAlert;
 
 public class FoodAlertMod : Mod
 {
-    public static FoodAlertSettings settings;
+    public static FoodAlertSettings Settings;
 
     private static string currentVersion;
 
@@ -21,7 +21,7 @@ public class FoodAlertMod : Mod
 
     public FoodAlertMod(ModContentPack content) : base(content)
     {
-        settings = GetSettings<FoodAlertSettings>();
+        Settings = GetSettings<FoodAlertSettings>();
         currentVersion =
             VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
     }
@@ -33,70 +33,70 @@ public class FoodAlertMod : Mod
 
     public override void DoSettingsWindowContents(Rect inRect)
     {
-        var listing_Standard = new Listing_Standard();
-        listing_Standard.Begin(inRect);
+        var listingStandard = new Listing_Standard();
+        listingStandard.Begin(inRect);
         foreach (var preferability in preferabilities)
         {
             var prefName = Enum.GetName(typeof(FoodPreferability), preferability);
-            if (listing_Standard.RadioButton(prefName, settings.foodPreferability == preferability))
+            if (listingStandard.RadioButton(prefName, Settings.FoodPreferability == preferability))
             {
-                settings.foodPreferability = preferability;
+                Settings.FoodPreferability = preferability;
             }
         }
 
-        listing_Standard.Label("SettingExplanation".Translate());
-        listing_Standard.GapLine();
-        if (settings.foodPreferability >= FoodPreferability.MealAwful)
+        listingStandard.Label("SettingExplanation".Translate());
+        listingStandard.GapLine();
+        if (Settings.FoodPreferability >= FoodPreferability.MealAwful)
         {
-            listing_Standard.Label("EstimateIngredients.label".Translate());
-            if (listing_Standard.RadioButton("EstimateIngredients.none".Translate(), settings.estimateIngredients == 0))
+            listingStandard.Label("EstimateIngredients.label".Translate());
+            if (listingStandard.RadioButton("EstimateIngredients.none".Translate(), Settings.EstimateIngredients == 0))
             {
-                settings.estimateIngredients = 0;
+                Settings.EstimateIngredients = 0;
             }
 
-            if (listing_Standard.RadioButton("EstimateIngredients.auto".Translate(), settings.estimateIngredients < 0))
+            if (listingStandard.RadioButton("EstimateIngredients.auto".Translate(), Settings.EstimateIngredients < 0))
             {
-                settings.estimateIngredients = -1;
+                Settings.EstimateIngredients = -1;
             }
 
-            if (listing_Standard.RadioButton("EstimateIngredients.custom".Translate(),
-                    settings.estimateIngredients > 0))
+            if (listingStandard.RadioButton("EstimateIngredients.custom".Translate(),
+                    Settings.EstimateIngredients > 0))
             {
-                if (settings.estimateIngredients <= 0)
+                if (Settings.EstimateIngredients <= 0)
                 {
-                    settings.estimateIngredients = 1;
+                    Settings.EstimateIngredients = 1;
                 }
             }
 
-            if (settings.estimateIngredients > 0)
+            if (Settings.EstimateIngredients > 0)
             {
-                settings.estimateIngredients = listing_Standard.SliderLabeled(
-                    "EstimateIngredients.slider".Translate(Math.Round(settings.estimateIngredients, 2).ToString()),
-                    settings.estimateIngredients, 0.1f, 10f);
+                Settings.EstimateIngredients = listingStandard.SliderLabeled(
+                    "EstimateIngredients.slider".Translate(Math.Round(Settings.EstimateIngredients, 2).ToString()),
+                    Settings.EstimateIngredients, 0.1f, 10f);
             }
         }
 
-        listing_Standard.GapLine();
-        listing_Standard.Label("FA.updatetype.label".Translate());
-        listing_Standard.CheckboxLabeled("FA.typedynamic.label".Translate(), ref settings.dynamicupdate,
+        listingStandard.GapLine();
+        listingStandard.Label("FA.updatetype.label".Translate());
+        listingStandard.CheckboxLabeled("FA.typedynamic.label".Translate(), ref Settings.DynamicUpdate,
             "FA.typedynamic.description".Translate());
-        if (!settings.dynamicupdate)
+        if (!Settings.DynamicUpdate)
         {
-            settings.updatefrequency = listing_Standard.SliderLabeled(
-                "FA.typestatic.slider".Translate(Math.Round((decimal)settings.updatefrequency / 2500, 2).ToString()),
-                settings.updatefrequency, 100, 10000);
+            Settings.UpdateFrequency = listingStandard.SliderLabeled(
+                "FA.typestatic.slider".Translate(Math.Round((decimal)Settings.UpdateFrequency / 2500, 2).ToString()),
+                Settings.UpdateFrequency, 100, 10000);
         }
 
         if (currentVersion != null)
         {
-            listing_Standard.Gap();
+            listingStandard.Gap();
             GUI.contentColor = Color.gray;
-            listing_Standard.Label("FA.modversion".Translate(currentVersion));
+            listingStandard.Label("FA.modversion".Translate(currentVersion));
             GUI.contentColor = Color.white;
         }
 
-        listing_Standard.End();
+        listingStandard.End();
 
-        settings.Write();
+        Settings.Write();
     }
 }

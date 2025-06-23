@@ -17,9 +17,9 @@ public class NutritionCounter
             ["default"] = map =>
             {
                 var num = 0f;
-                var selectedPreferability = FoodAlertMod.settings.foodPreferability;
+                var selectedPreferability = FoodAlertMod.Settings.FoodPreferability;
                 var estimateIngredients = selectedPreferability >= FoodPreferability.MealAwful
-                    ? FoodAlertMod.settings.estimateIngredients
+                    ? FoodAlertMod.Settings.EstimateIngredients
                     : 0f;
                 if (estimateIngredients < 0)
                 {

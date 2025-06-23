@@ -1,0 +1,9 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Release" />
+  </Configurations>
+  <Folder Name="/Extensions/">
+    <Project Path="Extensions/VENutrientPaste/VENutrientPasteExt.csproj" />
+  </Folder>
+  <Project Path="FoodAlert/FoodAlert.csproj" />
+</Solution>

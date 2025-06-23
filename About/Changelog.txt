@@ -1,5 +1,8 @@
 # Changelog for FoodAlert
 
+1.6.0 - Mod updated for 1.6 and passed autotests
+
+
 1.5.4 - Added option to include ingredients for making meals when calculating meal-amount, thanks to llunak!
 
 
