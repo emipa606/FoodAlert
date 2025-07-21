@@ -1,27 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <SomeFood>Food reserves</SomeFood>
-  <SomeFoodDesc>Food is not of an immediate concern.\n\n    Full bars worth of food in storage: {0}\n    Colonists/prisoners getting food: {1}\n    Days worth of food in storage: {2}</SomeFoodDesc>
-  <SomeFoodDescNew>Food is not of an immediate concern.\n\n    Full bars worth of food in storage: {0}\n    Colonists/prisoners getting food: {1}\n    Amount of food eaten per day: {2}\n    Days worth of food in storage: {3}</SomeFoodDescNew>
-  <LowFoodDesc>Food is a concern.\n\n    Full bars worth of food in storage: {0}\n    Colonists/prisoners getting food: {1}\n    Amount of food eaten per day: {2}\n    Days worth of food in storage: {3}</LowFoodDesc>
-  <LowFoodDescNew>Food is a concern.\n\n    Full bars worth of food in storage: {0}\n    Colonists/prisoners getting food: {1}\n    Amount of food eaten per day: {2}\n    Days worth of food in storage: {3}</LowFoodDescNew>
-  <LowFoodAddendum>\nFood of lower preferability may be available</LowFoodAddendum>
-  <FoodAlert_DaysOfFood> days worth of food</FoodAlert_DaysOfFood>
-  <FoodAlert_Decent>\n\nThat is a decent amount of food.</FoodAlert_Decent>
-  <FoodAlert_Poor>\n\nThat is a poor amount of food.</FoodAlert_Poor>
-  <FoodAlert_Bunch>\n\nThat is a bunch of food.</FoodAlert_Bunch>
-  <FoodAlert_Solid>\n\nThat is a solid amount of food.</FoodAlert_Solid>
-  <FoodAlert_Ridiculous>\n\nThat is an utterly ridiculous amount of food.</FoodAlert_Ridiculous>
-  <SettingDescription>Food preferability</SettingDescription>
-  <SettingExplanation>\nExamples\n\nDesperateOnly:	fertilized eggs, ambrosia\nRawBad:		kibble, unfertilized eggs\nRawTasty:	milk, berries\nMealAwful:	nutrient paste meal\nMealSimple:	simple meal, pemmican\nMealFine:		fine meal, insect jelly\nMealLavish:	lavish meal</SettingExplanation>
-  <EstimateIngredients.label>Estimate also from ingredients</EstimateIngredients.label>
-  <EstimateIngredients.none>No</EstimateIngredients.none>
-  <EstimateIngredients.auto>Automatic (awful x3, simple x1.8, fine x1.8, lavish x1)</EstimateIngredients.auto>
-  <EstimateIngredients.custom>Custom</EstimateIngredients.custom>
-  <EstimateIngredients.slider>Ingredients to meals ratio: x{0}</EstimateIngredients.slider>
-  <FA.updatetype.label>Update frequency</FA.updatetype.label>
-  <FA.typedynamic.label>Dynamic</FA.typedynamic.label>
-  <FA.typedynamic.description>Will update the food-situation based on how many days of food is available. The more days of food is available, the less often the tooltip will update. This is to improve performance in larger colonies.</FA.typedynamic.description>
-  <FA.typestatic.slider>Update every {0} in-game hour</FA.typestatic.slider>
-  <FA.modversion>Installed mod-version: {0}</FA.modversion>
+  <SomeFood>食物储量</SomeFood>
+  <SomeFoodDesc>食物不是当务之急。
+    库存食物总营养：{0}
+    需要食物的人数：{1}
+    库存食物总天数：{2}</SomeFoodDesc>
+  <SomeFoodDescNew>食物不是当务之急。
+    库存食物总营养：{0}
+    需要食物的人数：{1}
+    每日消耗食物量：{2}
+    库存食物总天数：{3}</SomeFoodDescNew>
+  <LowFoodDesc>食物令人担忧。
+    库存食物总营养：{0}
+    需要食物的人数：{1}
+    每日消耗食物量：{2}
+    库存食物总天数：{3}</LowFoodDesc>
+  <LowFoodDescNew>食物令人担忧。
+    库存食物总营养：{0}
+    需要食物的人数：{1}
+    每日消耗食物量：{2}
+    库存食物总天数：{3}</LowFoodDescNew>
+  <LowFoodAddendum>\n可能有不喜好的食物可用</LowFoodAddendum>
+  <FoodAlert_DaysOfFood>日食物剩余</FoodAlert_DaysOfFood>
+  <FoodAlert_Poor>\n\n食物储量太少了。</FoodAlert_Poor>
+  <FoodAlert_Decent>\n\n食物储量够用。</FoodAlert_Decent>
+  <FoodAlert_Bunch>\n\n食物储量很多。</FoodAlert_Bunch>
+  <FoodAlert_Solid>\n\n食物储量相当可观。</FoodAlert_Solid>
+  <FoodAlert_Ridiculous>\n\n食物储量多得离谱。</FoodAlert_Ridiculous>
+  <SettingDescription>食物喜好</SettingDescription>
+  <SettingExplanation>示例
+
+    DesperateOnly:	卵（已受精），仙馐果
+    RawBad:	粗饲料，卵（未受精）
+    RawTasty:	奶，莓果
+    MealAwful:	营养膏
+    MealSimple:	简单食物，干肉饼
+    MealFine:	精致食物，虫胶
+    MealLavish:	奢侈食物</SettingExplanation>
+  <EstimateIngredients.label>从原材料估计</EstimateIngredients.label>
+  <EstimateIngredients.none>否</EstimateIngredients.none>
+  <EstimateIngredients.auto>自动（糟糕 ×3，简单 ×1.8，精致 ×1.8，奢侈 ×1）</EstimateIngredients.auto>
+  <EstimateIngredients.custom>自定义</EstimateIngredients.custom>
+  <EstimateIngredients.slider>原料转化餐食比率： ×{0}</EstimateIngredients.slider>
+  <FA.updatetype.label>更新频率</FA.updatetype.label>
+  <FA.typedynamic.label>动态</FA.typedynamic.label>
+  <FA.typedynamic.description>根据当前食物剩余天数调整。剩余天数越多，更新越不频繁，旨在改善大型殖民地的性能。</FA.typedynamic.description>
+  <FA.typestatic.slider>每{0}游戏内小时更新一次</FA.typestatic.slider>
+  <FA.modversion>模组版本：{0}</FA.modversion>
 </LanguageData>
