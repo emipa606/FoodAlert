@@ -8,5 +8,11 @@
   ],
   "SocialImageSet": true,
   "SearchTags": " supplies",
-  "LastXmlCleaning": "2025-06-23T22:37:17.0240733+02:00"
+  "LastXmlCleaning": "2025-07-21T21:03:59.1632761+02:00",
+  "Patches": false,
+  "Defs": false,
+  "Assemblies": true,
+  "LinesOfCode": 18265,
+  "LinesOfXML": 0,
+  "CodeBaseSize": 67
 }
