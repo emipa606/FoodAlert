@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <LowFoodDesc>Nahrung ist ein Problem.\n\n Volle Riegel an Nahrung im Lager: {0}\n Kolonisten/Gefangene, die Nahrung erhalten: {1}\n Menge an Nahrung, die pro Tag gegessen wird: {2}\n Lebensmittelvorrat für Tage: {3}</LowFoodDesc>
+</LanguageData>

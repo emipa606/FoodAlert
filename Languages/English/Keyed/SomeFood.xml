@@ -3,7 +3,6 @@
   <SomeFood>Food reserves</SomeFood>
   <SomeFoodDesc>Food is not of an immediate concern.\n\n    Full bars worth of food in storage: {0}\n    Colonists/prisoners getting food: {1}\n    Days worth of food in storage: {2}</SomeFoodDesc>
   <SomeFoodDescNew>Food is not of an immediate concern.\n\n    Full bars worth of food in storage: {0}\n    Colonists/prisoners getting food: {1}\n    Amount of food eaten per day: {2}\n    Days worth of food in storage: {3}</SomeFoodDescNew>
-  <LowFoodDesc>Food is a concern.\n\n    Full bars worth of food in storage: {0}\n    Colonists/prisoners getting food: {1}\n    Amount of food eaten per day: {2}\n    Days worth of food in storage: {3}</LowFoodDesc>
   <LowFoodDescNew>Food is a concern.\n\n    Full bars worth of food in storage: {0}\n    Colonists/prisoners getting food: {1}\n    Amount of food eaten per day: {2}\n    Days worth of food in storage: {3}</LowFoodDescNew>
   <LowFoodAddendum>\nFood of lower preferability may be available</LowFoodAddendum>
   <FoodAlert_DaysOfFood> days worth of food</FoodAlert_DaysOfFood>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <LowFoodDesc>食物令人担忧。
+    库存食物总营养：{0}
+    需要食物的人数：{1}
+    每日消耗食物量：{2}
+    库存食物总天数：{3}</LowFoodDesc>
+</LanguageData>

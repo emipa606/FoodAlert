@@ -1,5 +1,8 @@
 # Changelog for FoodAlert
 
+1.6.2 - Moved old translation string to older version folders to stop compatibility issue
+
+
 1.6.1 - Added chinese translation by TNQOYxNU
 
 

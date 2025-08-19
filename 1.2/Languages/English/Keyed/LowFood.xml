@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <LowFoodDesc>Food is a concern.\n\n    Full bars worth of food in storage: {0}\n    Colonists/prisoners getting food: {1}\n    Amount of food eaten per day: {2}\n    Days worth of food in storage: {3}</LowFoodDesc>
+</LanguageData>

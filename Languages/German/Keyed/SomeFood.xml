@@ -24,5 +24,4 @@
   <FA.typedynamic.description>Aktualisiert die Nahrungsmittelsituation je nachdem, wie viele Tage Nahrung verfügbar ist. Je mehr Tage an Nahrung zur Verfügung stehen, desto seltener wird der Tooltip aktualisiert. Dies soll die Leistung in größeren Kolonien verbessern.</FA.typedynamic.description>
   <FA.typestatic.slider>Aktualisierung alle {0} Stunden im Spiel</FA.typestatic.slider>
   <FA.modversion>Installierte Mod-Version: {0}</FA.modversion>
-  <LowFoodDesc>Nahrung ist ein Problem.\n\n Volle Riegel an Nahrung im Lager: {0}\n Kolonisten/Gefangene, die Nahrung erhalten: {1}\n Menge an Nahrung, die pro Tag gegessen wird: {2}\n Lebensmittelvorrat für Tage: {3}</LowFoodDesc>
 </LanguageData>

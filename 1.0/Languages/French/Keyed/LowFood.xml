@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <LowFoodDesc>La nourriture est un problème.\NLa valeur totale des barres de nourriture stockées : {0}\N- Colons/prisonniers recevant de la nourriture : {1}\N- Quantité de nourriture consommée par jour : {2}\N- Nombre de jours de stockage de nourriture : {3}</LowFoodDesc>
+</LanguageData>
