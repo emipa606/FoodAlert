@@ -1,5 +1,8 @@
 # Changelog for FoodAlert
 
+1.6.4 - Fixed wrong author name
+
+
 1.6.3 - Fixed broken French translation
 
 

@@ -2,7 +2,7 @@
 <ModMetaData>
   <name>Food Alert (Continued)</name>
   <packageId>Mlie.FoodAlert</packageId>
-  <author>Mlie</author>
+  <author>Mehni</author>
   <url>https://github.com/emipa606/FoodAlert</url>
   <supportedVersions>
     <li>1.0</li>
@@ -83,6 +83,6 @@ Russian: Alex_1203
 [*] Use [url=https://github.com/RimSort/RimSort/releases/latest]RimSort[/url] to sort your mods
 [/list] 
 
-[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/2017538067][img]https://img.shields.io/github/v/release/emipa606/FoodAlert?label=latest%20version&amp;style=plastic&amp;color=9f1111&amp;labelColor=black[/img][/url] | tags: supplies</description>
-  <modVersion IgnoreIfNoMatchingField="True">1.6.3</modVersion>
+[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/2017538067][img]https://img.shields.io/github/v/release/emipa606/FoodAlert?label=latest%20version&amp;style=plastic&amp;color=9f1111&amp;labelColor=black[/img][/url] | tags: supply tracking</description>
+  <modVersion IgnoreIfNoMatchingField="True">1.6.4</modVersion>
 </ModMetaData>
