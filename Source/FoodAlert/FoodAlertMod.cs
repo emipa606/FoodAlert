@@ -60,12 +60,9 @@ public class FoodAlertMod : Mod
             }
 
             if (listingStandard.RadioButton("EstimateIngredients.custom".Translate(),
-                    Settings.EstimateIngredients > 0))
+                    Settings.EstimateIngredients > 0) && Settings.EstimateIngredients <= 0)
             {
-                if (Settings.EstimateIngredients <= 0)
-                {
-                    Settings.EstimateIngredients = 1;
-                }
+                Settings.EstimateIngredients = 1;
             }
 
             if (Settings.EstimateIngredients > 0)

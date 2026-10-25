@@ -7,7 +7,7 @@ using Verse;
 namespace FoodAlert;
 
 [StaticConstructorOnStartup]
-internal class HarmonyPatches
+internal static class HarmonyPatches
 {
     private static float CachedNutrition;
     private static float CachedNeed;

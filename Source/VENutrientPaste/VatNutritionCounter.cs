@@ -6,7 +6,7 @@ using Verse;
 namespace FoodAlert.Extensions.VENutrientPaste;
 
 [StaticConstructorOnStartup]
-public class VatNutritionCounter
+public static class VatNutritionCounter
 {
     static VatNutritionCounter()
     {

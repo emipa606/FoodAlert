@@ -5,7 +5,7 @@ using Verse;
 
 namespace FoodAlert;
 
-public class NutritionCounter
+public static class NutritionCounter
 {
     /// <summary>
     ///     A collection of functions which search the map for nutrition sources other than Things with nutrition values.

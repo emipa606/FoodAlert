@@ -2,8 +2,15 @@
   <Configurations>
     <BuildType Name="Release" />
   </Configurations>
-  <Folder Name="/Extensions/">
-    <Project Path="Extensions/VENutrientPaste/VENutrientPasteExt.csproj" />
-  </Folder>
+  <Project Path="VENutrientPaste/VENutrientPasteExt.csproj" />
   <Project Path="FoodAlert/FoodAlert.csproj" />
+  <Folder Name="/.github/">
+    <File Path="../.github/copilot-instructions.md" />
+  </Folder>
+  <Folder Name="/XML/Languages/English/Keyed/">
+    <File Path="../Languages/English/Keyed/SomeFood.xml" />
+  </Folder>
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
 </Solution>

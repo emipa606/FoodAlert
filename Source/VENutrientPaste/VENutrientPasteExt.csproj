@@ -1,29 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputPath>..\..\..\Mods\1.6\VENutrientPaste\Assemblies</OutputPath>
-    <TargetFramework>net48</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <OutputPath>..\..\Mods\1.7\VENutrientPaste\Assemblies</OutputPath>
+    <TargetFramework>net10.0</TargetFramework>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <DebugType>None</DebugType>
     <LangVersion>latest</LangVersion>
-    <FileVersion>1.6.0</FileVersion>
-  </PropertyGroup>
+  <FileVersion>1.7.0</FileVersion><GenerateDependencyFile>false</GenerateDependencyFile><AssemblyVersion>1.7</AssemblyVersion><Product>Food Alert (Continued)</Product><Copyright>© Mehni 2026 - MIT License</Copyright><Nullable>warnings</Nullable></PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>1.6.4498-beta</Version>
+      <Version>1.7.4985-unstable</Version>
       <ExcludeAssets>runtime</ExcludeAssets>
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Mlie_Rimworld_VersionFromManifest" Version="*" />
     <Reference Include="PipeSystem">
-      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2023507013\1.5\Assemblies\PipeSystem.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\workshop\content\294100\2023507013\1.7\Assemblies\PipeSystem.dll</HintPath>
       <CopyLocal>False</CopyLocal>
       <Private>False</Private>
     </Reference>
-    <ProjectReference Include="..\..\FoodAlert\FoodAlert.csproj">
+    <ProjectReference Include="..\FoodAlert\FoodAlert.csproj">
       <CopyLocal>False</CopyLocal>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
-</Project>
+<Target Name="KillRimWorld" BeforeTargets="Clean;Build"><Exec Command="taskkill.exe /F /IM RimWorld.exe /T &gt;nul 2&gt;&amp;1" IgnoreExitCode="true" /></Target></Project>
